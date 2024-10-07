@@ -7,13 +7,14 @@
 
         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" width="30"
             style="">
-        <span class="brand-text font-weight-light">OPERA</span>
+        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            {{-- Dropdown --}}
             <div class="image">
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
@@ -46,47 +47,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.departments.index') }}" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Departemen</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.positions.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Jabatan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.roles.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Roles</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.users.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pengguna</p>
+                                <p>Data User</p>
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-file"></i>
-                        <p>
-                            Evaluasi
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file"></i>
-                        <p>
-                            Laporan
-                        </p>
-                    </a>
                 </li>
                 <li class="nav-item">
                 <li class="nav-item">
