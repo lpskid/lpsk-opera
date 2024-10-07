@@ -66,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#"
-                        class="nav-link {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('log*') || request()->is('log*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                             Log
