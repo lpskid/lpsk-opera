@@ -31,6 +31,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -40,7 +41,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-
+                            <td>
+                                {{-- {!! $user->getRoleNames()->implode(', ') !!} --}}
+                                {{ $user->getRoleNames()->first() }}
+                            </td>
                             <td>
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn">Edit</a>
                                 <form action="{{ route('users.destroy', $user->id) }}" method="post"

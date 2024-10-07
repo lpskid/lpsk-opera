@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -12,8 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with(['roles'])->get();
 
+        // echo '<pre>';
+        // echo json_encode($users);
+        // echo '</pre>';
         return view('pages.dashboard.users.index', compact('users'));
     }
 
@@ -22,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.dashboard.users.create');
+        $roles = Role::all();
+        return view('pages.dashboard.users.create', compact('roles'));
     }
 
     /**
@@ -35,6 +40,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required'],
             'repeat_password' => ['required', 'same:password'],
+            'role' => ['required'],
         ]);
 
         $user = User::create([
@@ -42,6 +48,8 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        $user->assignRole($request->role);
 
         return redirect()->route('users.index')->with('success', 'Pengguna berhasil dibuat.');
     }
@@ -59,9 +67,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        $user = User::with(['roles'])->find($id);
+        $roles = Role::all();
 
-        return view('pages.dashboard.users.edit', compact('user'));
+        return view('pages.dashboard.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -74,6 +83,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . ',email,' . $id],
             'password' => ['nullable'],
             'repeat_password' => ['nullable', 'same:password'],
+            'role' => ['required'],
         ]);
 
         $user = User::find($id);
@@ -90,6 +100,8 @@ class UserController extends Controller
                 'email' => $request->email,
             ]);
         }
+
+        $user->syncRoles($request->role);
 
         return redirect()->route('users.index')->with('success', 'Pengguna berhasil diperbarui.');
     }

@@ -2,6 +2,10 @@
 
 @section('title', 'Tambah Pengguna')
 
+@push('style')
+    @include('style.select2')
+@endpush
+
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -24,6 +28,19 @@
                             <input type="email" name="email" class="form-control" id="email"
                                 placeholder="Masukkan Email" value="{{ old('email') }}">
                             @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select class="select2" style="width: 100%;" id="role" name="role">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('role')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -60,3 +77,18 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    @include('scripts.select2')
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2').select2({
+                theme: 'bootstrap4'
+            })
+        });
+    </script>
+@endpush
