@@ -41,15 +41,15 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Data Pengguna
+                            Master Data
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Data User</p>
+                                <p>Data Pengguna</p>
                             </a>
                         </li>
                     </ul>
