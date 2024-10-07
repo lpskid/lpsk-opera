@@ -51,5 +51,25 @@
                 <span class="ml-3">Menyimpan...</span>
             `);
         });
+
+        let buttonLogout = $("#form-logout-button");
+
+        buttonLogout.click(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Logout",
+                text: "Apakah Anda yakin ingin keluar?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Logout",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // closest form
+                    $(this).closest("form").submit();
+                }
+            });
+        });
     });
 </script>

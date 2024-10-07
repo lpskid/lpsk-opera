@@ -64,11 +64,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                <li class="nav-item">
-                    <form action="#" method="POST">
+                <li class="nav-item mt-3">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="nav-link">
+                        <button type="submit" id="form-logout-button" class="nav-link">
                             <i class="nav-icon fa fa-sign-out-alt"></i>
                             <p>
                                 Logout
