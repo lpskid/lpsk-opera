@@ -52,6 +52,12 @@
                                 <p>Data Pengguna</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('roles.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Role</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
