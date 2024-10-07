@@ -64,6 +64,15 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('log') }}"
+                        class="nav-link {{ request()->routeIs('log') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                            Log
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item mt-3">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
