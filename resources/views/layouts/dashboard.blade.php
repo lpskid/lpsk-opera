@@ -37,6 +37,10 @@
                             <h1>@yield('title')</h1>
                         </div>
                         <div class="col-sm-6">
+                            @php
+                                $breadcrumbs = generate_breadcrumb(Route::currentRouteName());
+                            @endphp
+
                             <<x-breadcrumb :breadcrumbs="$breadcrumbs" />
                         </div>
                     </div>

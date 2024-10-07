@@ -8,12 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-
-    $breadcrumbs = [
-        ['url' => route('dashboard'), 'label' => 'Dashboard'],  
-    ];
-
-    return view('pages.dashboard.index', compact('breadcrumbs'));
+    return view('pages.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
