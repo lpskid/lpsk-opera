@@ -10,7 +10,7 @@
 
     <div class="content-header">
         <div class="d-flex justify-content-between">
-            <h4>Data Pengguna</h4>
+            <h5>Total : {{ $users->count() }} Data</h5>
             {{-- button add with modal --}}
             <a href="{{ route('users.create') }}"
                 class="btn d-sm-block d-md-block d-lg-block d-xl-block d-none btn-primary mb-2">
