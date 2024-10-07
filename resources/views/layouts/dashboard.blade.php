@@ -41,7 +41,7 @@
                                 $breadcrumbs = generate_breadcrumb(Route::currentRouteName());
                             @endphp
 
-                            <<x-breadcrumb :breadcrumbs="$breadcrumbs" />
+                            <x-breadcrumb :breadcrumbs="$breadcrumbs" />
                         </div>
                     </div>
                 </div>
@@ -63,6 +63,7 @@
     <!-- ./wrapper -->
     @include('partials.script')
     @stack('script')
+
 </body>
 
 </html>

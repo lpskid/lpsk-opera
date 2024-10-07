@@ -31,6 +31,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,16 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+
+                            <td>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn">Edit</a>
+                                <form action="{{ route('users.destroy', $user->id) }}" method="post"
+                                    class="delete-form d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-danger btn-delete-data">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
             </table>
@@ -58,6 +69,24 @@
                 "autoWidth": true,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
             }).buttons().container().appendTo('#data-table_wrapper .col-md-6:eq(0)');
+
+
+            $('.btn-delete-data').on('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).closest('form').submit();
+                    }
+                })
+            })
         });
     </script>
 @endpush

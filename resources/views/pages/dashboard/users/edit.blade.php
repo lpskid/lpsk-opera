@@ -5,14 +5,15 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form id="add-data-form" action="{{ route('users.store') }}" method="POST">
+            <form id="add-data-form" action="{{ route('users.update', $user->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">Nama</label>
                             <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Masukkan Nama" value="{{ old('name') }}">
+                                placeholder="Masukkan Nama" value="{{ $user->name }}">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -22,7 +23,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" class="form-control" id="email"
-                                placeholder="Masukkan Email" value="{{ old('email') }}">
+                                placeholder="Masukkan Email" value="{{ $user->email }}">
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -33,6 +34,10 @@
                             <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" id="password"
                                 placeholder="Masukkan Password" value="{{ old('password') }}">
+                                <span class="text-muted">
+                                    <i class="fa fa-info-circle"></i>
+                                    <small> Kosongkan jika tidak ingin mengganti password</small>
+                                </span>
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
