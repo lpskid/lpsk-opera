@@ -65,13 +65,30 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('log') }}"
-                        class="nav-link {{ request()->routeIs('log') ? 'active' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                             Log
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('log-activity') }}"
+                                class="nav-link {{ request()->routeIs('log-activity') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Aktivitas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('log') }}"
+                                class="nav-link {{ request()->routeIs('log') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sistem</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item mt-3">
                     <form action="{{ route('logout') }}" method="POST">

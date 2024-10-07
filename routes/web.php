@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LogActivityController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -26,7 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 
-    Route::get('/log', [LogActivityController::class, 'index'])->name('log');
+    Route::get('/log', LogController::class)->name('log');
+    Route::get('/log-activity', [LogActivityController::class, 'index'])->name('log-activity');
 });
 
 require __DIR__ . '/auth.php';
