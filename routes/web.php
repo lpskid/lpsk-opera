@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
@@ -8,9 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
+Route::get('/evaluasi', [LandingController::class, 'evaluation'])->name('landing.evaluation');
 
 Route::get('/dashboard', function () {
 
