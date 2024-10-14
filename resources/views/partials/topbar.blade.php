@@ -24,7 +24,7 @@
                 <li class="nav-item">
                     <a href="{{ route('landing.evaluation') }}" class="nav-link">Evaluasi</a>
                 </li>
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -61,7 +61,7 @@
                         </li>
                         <!-- End Level two -->
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

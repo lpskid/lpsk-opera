@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evaluation;
+use App\Models\Regulation;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -11,21 +13,37 @@ class LandingController extends Controller
         return view('pages.landing.index');
     }
 
-    public function evaluation(Request $request)
+    public function evaluation()
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email',
-        //     'phone' => 'required',
-        //     'message' => 'required',
-        //     'captcha' => 'required|captcha'
-        // ]);
+        $regulations = Regulation::all();
+        return view('pages.landing.evaluation', compact('regulations'));
+    }
 
-        // $name = $request->name;
-        // $email = $request->email;
-        // $phone = $request->phone;
-        // $message = $request->message;
+    public function evaluationStore(Request $request)
+    {
+        $request->validate([
+            'regulation_id' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'status' => 'required',
+            'phone' => 'required',
+            'age' => 'required',
+            'gender' => 'required',
+            'content' => 'required',
+            'captcha' => 'required|captcha',
+        ]);
 
-        return view('pages.landing.evaluation');
+        Evaluation::create([
+            'regulation_id' => $request->regulation_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'status' => $request->status,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->back()->with('success', 'Terima kasih, kami akan segera menghubungi anda.');
     }
 }

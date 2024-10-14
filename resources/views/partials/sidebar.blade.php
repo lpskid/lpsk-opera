@@ -65,9 +65,18 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('peraturan.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                            Peraturan
+                        </p>
+                    </a>
+                </li>
+                </li>
+                <li class="nav-item">
                     <a href="#"
                         class="nav-link {{ request()->is('log*') || request()->is('log*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-file"></i>
+                        <i class="nav-icon fas fa-history"></i>
                         <p>
                             Log
                             <i class="right fas fa-angle-left"></i>
@@ -94,7 +103,7 @@
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" id="form-logout-button" class="nav-link">
-                            <i class="nav-icon fa fa-sign-out-alt"></i>
+                            <i class="nav-icon fa fa-sign-out"></i>
                             <p>
                                 Logout
                             </p>

@@ -38,6 +38,23 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'users-access']);
         Permission::create(['name' => 'users-create']);
         Permission::create(['name' => 'users-update']);
-        Permission::create(['name' => 'users-delete']);
+        Permission::create(['name' => 'users-destroy']);
+
+        Permission::create(['name' => 'regulation-access']);
+        Permission::create(['name' => 'regulation-create']);
+        Permission::create(['name' => 'regulation-update']);
+        Permission::create(['name' => 'regulation-destroy']);
+
+        Permission::create(['name' => 'regulation-status-update-pengusulan']);
+        Permission::create(['name' => 'regulation-status-update-penyusunan_pembahasan']);
+        Permission::create(['name' => 'regulation-status-update-partisipasi_publik']);
+        Permission::create(['name' => 'regulation-status-update-persetujuan_pimpinan']);
+        Permission::create(['name' => 'regulation-status-update-penyelarasan']);
+        Permission::create(['name' => 'regulation-status-update-penetapan']);
+        Permission::create(['name' => 'regulation-status-update-pengundangan_peraturan']);
+        Permission::create(['name' => 'regulation-status-update-penyusunan_informasi']);
+        Permission::create(['name' => 'regulation-status-update-penyebarluasan']);
+        Permission::create(['name' => 'regulation-status-update-laporan_proses']);
+        Permission::create(['name' => 'regulation-status-update-analisa_evaluasi']);
     }
 }
