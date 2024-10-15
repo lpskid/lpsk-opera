@@ -29,76 +29,88 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}"
-                        class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
+                @can('dashboard-access')
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can('master-data-access')
+                    <li class="nav-item">
+                        <a href="#"
+                            class="nav-link {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Master Data
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('users-access')
+                                <li class="nav-item">
+                                    <a href="{{ route('users.index') }}"
+                                        class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Pengguna</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('role-access')
+                                <li class="nav-item">
+                                    <a href="{{ route('roles.index') }}"
+                                        class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Role</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('regulation-access')
+                    <li class="nav-item">
+                        <a href="{{ route('peraturan.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>
+                                Peraturan
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 </li>
-                <li class="nav-item">
-                    <a href="#"
-                        class="nav-link {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Master Data
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}"
-                                class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Pengguna</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('roles.index') }}"
-                                class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Role</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('peraturan.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-file"></i>
-                        <p>
-                            Peraturan
-                        </p>
-                    </a>
-                </li>
-                </li>
-                <li class="nav-item">
-                    <a href="#"
-                        class="nav-link {{ request()->is('log*') || request()->is('log*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-history"></i>
-                        <p>
-                            Log
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('log-activity') }}"
-                                class="nav-link {{ request()->routeIs('log-activity') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Aktivitas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('log') }}"
-                                class="nav-link {{ request()->routeIs('log') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Sistem</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @can('log-access')
+                    <li class="nav-item">
+                        <a href="#"
+                            class="nav-link {{ request()->is('log*') || request()->is('log*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-history"></i>
+                            <p>
+                                Log
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('log-activity') }}"
+                                    class="nav-link {{ request()->routeIs('log-activity') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Aktivitas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('log') }}"
+                                    class="nav-link {{ request()->routeIs('log') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sistem</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
                 <li class="nav-item mt-3">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf

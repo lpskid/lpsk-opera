@@ -42,7 +42,7 @@ class RegulationController extends Controller
             'status'        => 'pengusulan',
         ]);
 
-        return view('pages.dashboard.regulation.create');
+        return redirect()->route('peraturan.index')->with('success', 'Regulasi berhasil dibuat.');
     }
 
     /**
@@ -50,7 +50,9 @@ class RegulationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $regulation = Regulation::with(['evaluations'])->find($id);
+
+        return view('pages.dashboard.regulation.show', compact('regulation'));
     }
 
     /**
@@ -58,7 +60,9 @@ class RegulationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $regulation = Regulation::find($id);
+
+        return view('pages.dashboard.regulation.edit', compact('regulation'));
     }
 
     /**
@@ -74,7 +78,11 @@ class RegulationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $regulation = Regulation::find($id);
+
+        $regulation->delete();
+
+        return redirect()->route('peraturan.index')->with('success', 'Regulasi berhasil dihapus.');
     }
 
     public function updateStatus(string $id)

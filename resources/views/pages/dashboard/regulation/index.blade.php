@@ -41,15 +41,18 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $regulation->title }}</td>
                             <th>{{ $regulation->invitation_date }}</th>
-                            <th>{{ strtoupper($regulation->status) }}</th>
+                            <th>{{ strtoupper(str_replace('_', ' ', $regulation->status)) }}</th>
                             <td>
-                                {{-- Button Modal Update Status --}}
-                                <form action="{{ route('peraturan.update-status', $regulation->id) }}" method="post"
-                                    class="delete-form d-inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="button" class="btn btn-success btn-update-data">Update Status</button>
-                                </form>
+                                @if ($regulation->status != 'analisa_evaluasi')
+                                    {{-- Button Modal Update Status --}}
+                                    <form action="{{ route('peraturan.update-status', $regulation->id) }}" method="post"
+                                        class="delete-form d-inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="button" class="btn btn-success btn-update-data">Update
+                                            Status</button>
+                                    </form>
+                                @endif
 
                                 <a href="{{ route('peraturan.show', $regulation->id) }}"
                                     class="btn btn-primary btn">Detail</a>

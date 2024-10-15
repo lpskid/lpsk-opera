@@ -17,4 +17,9 @@ class Regulation extends Model
         'content',
         'status',
     ];
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 }

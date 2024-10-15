@@ -9,14 +9,15 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form id="add-data-form" action="{{ route('peraturan.store') }}" method="POST">
+            <form id="edit-data-form" action="{{ route('peraturan.update', $regulation->id) }}" method="POST">
                 @csrf
+                @method('PUT') <!-- Add this line for PUT method -->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title">Judul</label>
                             <input type="text" name="title" class="form-control" id="title"
-                                placeholder="Masukkan Judul" value="{{ old('title') }}">
+                                placeholder="Masukkan Judul" value="{{ old('title', $regulation->title) }}">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -26,7 +27,8 @@
                         <div class="form-group">
                             <label for="invitation_date">Tanggal</label>
                             <input type="date" name="invitation_date" class="form-control" id="invitation_date"
-                                placeholder="Masukkan Tanggal" value="{{ old('invitation_date') }}">
+                                placeholder="Masukkan Tanggal"
+                                value="{{ old('invitation_date', $regulation->invitation_date) }}">
                             @error('invitation_date')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -35,7 +37,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="content">Deskripsi</label>
-                            <textarea name="content" id="content" class="form-control" cols="30" rows="10">{{ old('content') }}</textarea>
+                            <textarea name="content" id="content" class="form-control" cols="30" rows="10">{{ old('content', $regulation->content) }}</textarea>
                             @error('content')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

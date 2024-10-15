@@ -16,7 +16,7 @@ class PermissionSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // dashboard
+        // Dashboard
         Permission::create(['name' => 'dashboard-access']);
 
         // User Management
@@ -27,6 +27,8 @@ class PermissionSeeder extends Seeder
 
         // User Profile
         Permission::create(['name' => 'profile-access']);
+
+        Permission::create(['name' => 'master-data-access']);
 
         // Role Management
         Permission::create(['name' => 'role-access']);
@@ -56,5 +58,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'regulation-status-update-penyebarluasan']);
         Permission::create(['name' => 'regulation-status-update-laporan_proses']);
         Permission::create(['name' => 'regulation-status-update-analisa_evaluasi']);
+
+        Permission::create(['name' => 'log-access']);
+        Permission::create(['name' => 'log-activities']);
+        Permission::create(['name' => 'log-systems']);
     }
 }

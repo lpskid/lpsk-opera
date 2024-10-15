@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Regulation;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,36 @@ Route::get('/evaluasi', [LandingController::class, 'evaluation'])->name('landing
 Route::post('/evaluasi', [LandingController::class, 'evaluationStore'])->name('landing.evaluation.store');
 
 Route::get('/dashboard', function () {
-
     $users = User::all();
+    $regulations = Regulation::all();
 
-    return view('pages.dashboard.index', compact('users'));
+    $pengusulan = Regulation::where('status', 'pengusulan')->count();
+    $penyusunan_pembahasan = Regulation::where('status', 'penyusunan pembahasan')->count();
+    $partisipasi_publik = Regulation::where('status', 'partisipasi publik')->count();
+    $persetujuan_pimpinan = Regulation::where('status', 'persetujuan pimpinan')->count();
+    $penyelarasan = Regulation::where('status', 'penyelarasan')->count();
+    $penetapan = Regulation::where('status', 'penetapan')->count();
+    $pengundangan_peraturan = Regulation::where('status', 'pengundangan peraturan')->count();
+    $penyusunan_informasi = Regulation::where('status', 'penyusunan informasi')->count();
+    $penyebarluasan = Regulation::where('status', 'penyebarluasan')->count();
+    $laporan_proses = Regulation::where('status', 'laporan proses')->count();
+    $analisa_evaluasi = Regulation::where('status', 'analisa evaluasi')->count();
+
+    return view('pages.dashboard.index', compact(
+        'users',
+        'regulations',
+        'pengusulan',
+        'penyusunan_pembahasan',
+        'partisipasi_publik',
+        'persetujuan_pimpinan',
+        'penyelarasan',
+        'penetapan',
+        'pengundangan_peraturan',
+        'penyusunan_informasi',
+        'penyebarluasan',
+        'laporan_proses',
+        'analisa_evaluasi'
+    ));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

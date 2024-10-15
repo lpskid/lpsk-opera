@@ -8,9 +8,22 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.landing.index');
+        // Get the search keyword from the request
+        $search = $request->input('search');
+
+        // Initialize an empty collection for regulations
+        $regulations = collect();
+
+        // Query regulations based on the search keyword
+        if ($search) {
+            $regulations = Regulation::where('title', 'LIKE', "%{$search}%")
+                ->orWhere('content', 'LIKE', "%{$search}%")
+                ->get();
+        }
+
+        return view('pages.landing.index', compact('regulations', 'search'));
     }
 
     public function evaluation()
@@ -24,9 +37,9 @@ class LandingController extends Controller
         $request->validate([
             'regulation_id' => 'required',
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:evaluations',
             'status' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|numeric|unique:evaluations',
             'age' => 'required',
             'gender' => 'required',
             'content' => 'required',
