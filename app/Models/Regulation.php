@@ -10,10 +10,11 @@ class Regulation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'number',
+        'jdih_link',
         'title',
-        'determination_date',
-        'determination_location',
-        'invitation_date',
+        'information',
+        'date',
         'content',
         'status',
     ];
@@ -21,5 +22,10 @@ class Regulation extends Model
     public function evaluations()
     {
         return $this->hasMany(Evaluation::class);
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany(RegulationAttachment::class);
     }
 }

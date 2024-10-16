@@ -19,7 +19,7 @@
                     <a href="{{ route('landing.index') }}" class="nav-link">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    {{-- <a href="{{ route('landing.peraturan') }}" class="nav-link">Peraturan</a> --}}
+                    <a href="{{ route('landing.front-peraturan') }}" class="nav-link">Peraturan</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('landing.evaluation') }}" class="nav-link">Evaluasi</a>

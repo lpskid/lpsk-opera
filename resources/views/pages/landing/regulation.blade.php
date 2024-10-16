@@ -3,5 +3,7 @@
 @section('title', 'Evaluasi')
 
 @section('content')
-
+    <section class="content-container">
+        
+    </section>
 @endsection

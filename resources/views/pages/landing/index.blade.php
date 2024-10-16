@@ -4,38 +4,124 @@
 
 @section('content')
     <!-- Main content -->
-    <header class="py-5"
-        style="background-image: url('{{ asset('images/background-header.jpg') }}'); background-size: cover; background-position: center;">
-        <div class="container position-relative">
+    <header class="d-flex align-items-center justify-content-center"
+        style="background-image: url('{{ asset('images/background-header.jpg') }}'); background-size: cover; background-position: center; height: 500px;">
+        <div class="container text-center text-white">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
-                    <div class="text-center text-white">
-                        <!-- Page heading-->
-                        <h1 class="mb-5">Selamat Datang di Opera</h1>
-                        <!-- Signup form-->
-                        <form class="form-subscribe" id="contactForm">
-                            <!-- Email address input-->
-                            <div class="row">
-                                <div class="col">
-                                    <input class="form-control form-control-lg" id="emailAddress" type="email"
-                                        placeholder="Cari peraturan di sini" required>
-                                </div>
-                                <div class="col-auto">
-                                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Cari</button>
-                                </div>
+                    <h1 class="mb-5">Selamat Datang di Opera</h1>
+                    <!-- Signup form-->
+                    <form class="form-subscribe" id="contactForm">
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control form-control-lg" id="emailAddress" type="email"
+                                    placeholder="Cari peraturan di sini" required>
                             </div>
-                        </form>
-                        <!-- Additional content (optional) -->
-                        <p class="mt-3">Platform ini memudahkan proses approval data peraturan secara efisien dan
-                            terstruktur.</p>
-                    </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Additional content -->
+                    <p class="mt-3">Platform ini memudahkan proses approval data peraturan secara efisien dan terstruktur.
+                    </p>
                 </div>
             </div>
         </div>
     </header>
 
+
     <section class="content container mt-5">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="container my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="display-5">Peraturan Terbaru</h2>
+                <a href="#" class="btn btn-outline-primary">Lihat Semua</a>
+            </div>
+
+            <div class="row">
+                <!-- Card 1 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 1</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 2</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 3</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 4</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 5</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 6</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 7</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white"
+                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <h5 class="card-title text-center">Peraturan 8</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -43,7 +129,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://unsplash.it/900x500"
+                    <img class="d-block w-100" src="{{ asset('images/background-header.jpg') }}"
                         alt="First slide">
                 </div>
                 <div class="carousel-item">
@@ -67,7 +153,7 @@
                 </span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+        </div> --}}
     </section>
 
     {{-- <section class="content container">

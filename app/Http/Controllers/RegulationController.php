@@ -31,18 +31,36 @@ class RegulationController extends Controller
     {
         $request->validate([
             'title'          => 'required|unique:regulations,title',
-            'invitation_date' => 'required',
+            'number'         => 'required|unique:regulations,number',
+            'jdih_link' => 'required',
             'content'   => 'required',
+            'information'   => 'required',
+            'attachments' => 'file|mimes:pdf,docx,doc',
         ]);
 
-        Regulation::create([
+        $regulation = Regulation::create([
+            'number'          => $request->number,
             'title'          => $request->title,
-            'invitation_date' => $request->invitation_date,
+            'jdih_link' => $request->jdih_link,
             'content'       => $request->content,
+            'information'   => $request->information,
             'status'        => 'pengusulan',
         ]);
 
-        return redirect()->route('peraturan.index')->with('success', 'Regulasi berhasil dibuat.');
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('attachments'); // Simpan file di folder 'attachments'
+
+                // Simpan informasi lampiran di database
+                $regulation->attachments()->create([
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $path,
+                ]);
+            }
+        }
+
+
+        return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil dibuat.');
     }
 
     /**
@@ -70,7 +88,38 @@ class RegulationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $regulation = Regulation::find($id);
+
+        $request->validate([
+            'title'          => 'required|unique:regulations,title,' . $id,
+            'number'         => 'required|unique:regulations,number,' . $id,
+            'jdih_link' => 'required',
+            'content'   => 'required',
+            'information'   => 'required',
+            'attachments' => 'file|mimes:pdf,docx,doc',
+        ]);
+
+        $regulation->update([
+            'number'          => $request->number,
+            'title'          => $request->title,
+            'jdih_link' => $request->jdih_link,
+            'content'       => $request->content,
+            'information'   => $request->information,
+        ]);
+
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('attachments'); // Simpan file di folder 'attachments'
+
+                // Simpan informasi lampiran di database
+                $regulation->attachments()->create([
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil diperbarui.');
     }
 
     /**
@@ -82,7 +131,7 @@ class RegulationController extends Controller
 
         $regulation->delete();
 
-        return redirect()->route('peraturan.index')->with('success', 'Regulasi berhasil dihapus.');
+        return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil dihapus.');
     }
 
     public function updateStatus(string $id)
