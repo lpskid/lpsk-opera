@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/evaluasi', [LandingController::class, 'evaluation'])->name('landing.evaluation');
 Route::post('/evaluasi', [LandingController::class, 'evaluationStore'])->name('landing.evaluation.store');
+Route::get('/front-peraturan', [LandingController::class, 'regulation'])->name('landing.front-peraturan');
 
 Route::get('/dashboard', function () {
     $users = User::all();

@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white md:py-3">
     <div class="container">
         <a href="../../index3.html" class="navbar-brand">
             <img src="{{ asset('images/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -19,7 +19,7 @@
                     <a href="{{ route('landing.index') }}" class="nav-link">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Peraturan</a>
+                    {{-- <a href="{{ route('landing.peraturan') }}" class="nav-link">Peraturan</a> --}}
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('landing.evaluation') }}" class="nav-link">Evaluasi</a>

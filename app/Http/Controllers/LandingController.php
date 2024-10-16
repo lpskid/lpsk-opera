@@ -59,4 +59,10 @@ class LandingController extends Controller
 
         return redirect()->back()->with('success', 'Terima kasih, kami akan segera menghubungi anda.');
     }
+
+    public function regulation()
+    {
+        $regulations = Regulation::all();
+        return view('pages.landing.regulation', compact('regulations'));
+    }
 }
