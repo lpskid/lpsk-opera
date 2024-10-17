@@ -22,10 +22,10 @@
                     <a href="{{ route('landing.front-peraturan') }}" class="nav-link">Peraturan</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('landing.public-participation') }}" class="nav-link {{ request()->routeIs('landing.public-participation') ? 'active' : '' }}">Partisipasi Publik</a>
+                    <a href="{{ route('landing.public-participation') }}" class="nav-link {{ request()->routeIs('landing.public-participation*') ? 'active' : '' }}">Partisipasi Publik</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('landing.evaluation') }}" class="nav-link">Analisis dan Evaluasi</a>
+                    <a href="{{ route('landing.evaluation') }}" class="nav-link {{ request()->routeIs('landing.evaluation*') ? 'active' : '' }}">Analisis dan Evaluasi</a>
                 </li>
                 {{-- <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
