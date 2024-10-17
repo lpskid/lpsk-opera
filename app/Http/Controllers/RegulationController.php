@@ -35,12 +35,13 @@ class RegulationController extends Controller
             'jdih_link' => 'required',
             'content'   => 'required',
             'information'   => 'required',
-            'attachments' => 'file|mimes:pdf,docx,doc',
+            'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation = Regulation::create([
             'number'          => $request->number,
             'title'          => $request->title,
+            'slug'          => \Str::slug($request->title . '-' . \Str::random(6)),
             'jdih_link' => $request->jdih_link,
             'content'       => $request->content,
             'information'   => $request->information,
@@ -49,7 +50,7 @@ class RegulationController extends Controller
 
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments'); // Simpan file di folder 'attachments'
+                $path = $file->store('attachments', 'public'); // Simpan file di folder 'attachments'
 
                 // Simpan informasi lampiran di database
                 $regulation->attachments()->create([
@@ -96,7 +97,7 @@ class RegulationController extends Controller
             'jdih_link' => 'required',
             'content'   => 'required',
             'information'   => 'required',
-            'attachments' => 'file|mimes:pdf,docx,doc',
+            'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation->update([
@@ -109,7 +110,8 @@ class RegulationController extends Controller
 
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments'); // Simpan file di folder 'attachments'
+                $path = $file->store('attachments'); 
+                // Simpan file di folder 'attachments'
 
                 // Simpan informasi lampiran di database
                 $regulation->attachments()->create([

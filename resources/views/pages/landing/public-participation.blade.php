@@ -1,6 +1,6 @@
 @extends('layouts.landing')
 
-@section('title', 'Analisis dan Evaluasi')
+@section('title', 'Partisipasi Publik')
 
 @push('style')
     @include('style.datatable')
@@ -23,7 +23,7 @@
         <div class="row my-3">
             <div class="col-12">
                 <h3>
-                    Analisis dan Evaluasi Peraturan
+                    Partisipasi Publik
                 </h3>
             </div>
         </div>
@@ -48,7 +48,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $regulation->number }}</td>
-                                        <td><a href="{{ route('landing.evaluation.detail', $regulation->slug) }}">
+                                        <td><a href="{{ route('landing.public-participation.detail', $regulation->slug) }}" >
                                                 {{ $regulation->title }}</a></td>
                                         <th>{{ $regulation->date }}</th>
                                         <th>{{ strtoupper(str_replace('_', ' ', $regulation->status)) }}</th>

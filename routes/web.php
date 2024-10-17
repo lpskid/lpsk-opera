@@ -12,9 +12,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
+
 Route::get('/evaluasi', [LandingController::class, 'evaluation'])->name('landing.evaluation');
 Route::post('/evaluasi', [LandingController::class, 'evaluationStore'])->name('landing.evaluation.store');
+Route::get('/evaluasi/{slug}', [LandingController::class, 'evaluationDetail'])->name('landing.evaluation.detail');
+
 Route::get('/front-peraturan', [LandingController::class, 'regulation'])->name('landing.front-peraturan');
+
+Route::get('/partisipasi-publik', [LandingController::class, 'publicParticipation'])->name('landing.public-participation');
+Route::get('/partisipasi-publik/{slug}', [LandingController::class, 'publicParticipationDetail'])->name('landing.public-participation.detail');
+Route::post('/partisipasi-publik', [LandingController::class, 'publicParticipationStore'])->name('landing.public-participation.store');
 
 Route::get('/dashboard', function () {
     $users = User::all();

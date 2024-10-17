@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('number');
             $table->text('jdih_link');
             $table->string('title');
+            $table->string('slug')->unique();
             $table->date('date')->default(date('Y-m-d'));
             $table->text('information');
             $table->text('content');

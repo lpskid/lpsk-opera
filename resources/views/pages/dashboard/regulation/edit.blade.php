@@ -67,9 +67,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="attachment">Lampiran</label>
-                            <input type="file" name="attachment[]" class="form-control" id="attachment">
+                            <input type="file" name="attachments[]" class="form-control" id="attachment">
                             <span class="text-muted text-sm">* Boleh lebih dari satu lampiran</span>
-                            @error('attachment')
+                            @error('attachments')
+                                <br>
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

@@ -12,17 +12,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        <div class="collapse navbar-collapse order-3 py-2" id="navbarCollapse">
             <!-- Left navbar links -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="{{ route('landing.index') }}" class="nav-link">Beranda</a>
+                    <a href="{{ route('landing.index') }}" class="nav-link {{ request()->routeIs('landing.index') ? 'active' : '' }}">Beranda</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('landing.front-peraturan') }}" class="nav-link">Peraturan</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('landing.evaluation') }}" class="nav-link">Evaluasi</a>
+                    <a href="{{ route('landing.public-participation') }}" class="nav-link {{ request()->routeIs('landing.public-participation') ? 'active' : '' }}">Partisipasi Publik</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('landing.evaluation') }}" class="nav-link">Analisis dan Evaluasi</a>
                 </li>
                 {{-- <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"

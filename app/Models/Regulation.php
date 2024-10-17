@@ -13,6 +13,7 @@ class Regulation extends Model
         'number',
         'jdih_link',
         'title',
+        'slug',
         'information',
         'date',
         'content',
@@ -22,6 +23,11 @@ class Regulation extends Model
     public function evaluations()
     {
         return $this->hasMany(Evaluation::class);
+    }
+
+    public function publicParticipations()
+    {
+        return $this->hasMany(PublicParticipation::class);
     }
 
     public function attachments()
