@@ -9,9 +9,9 @@
         <div class="container text-center text-white">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
-                    <h1 class="mb-5">Selamat Datang di Opera</h1>
+                    <h1 class="mb-5">Optimalisasi Sistem Penyusunan Peraturan di Lingkungan LPSK</h1>
                     <!-- Signup form-->
-                    <form class="form-subscribe" id="contactForm">
+                    {{-- <form class="form-subscribe" id="contactForm">
                         <div class="row">
                             <div class="col">
                                 <input class="form-control form-control-lg" id="emailAddress" type="email"
@@ -21,20 +21,79 @@
                                 <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Cari</button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                     <!-- Additional content -->
-                    <p class="mt-3">Platform ini memudahkan proses approval data peraturan secara efisien dan terstruktur.
+                    <p class="mt-3">
+                        Sistem ini merupakan sistem yang dapat menggambarkan proses setiap pembentukan peraturan di
+                        lingkungan LPSK, serta menjadi pojok pemantauan, evaluasi dan partisipasi publik dalam penyusunan
+                        peraturan di lingkungan LPSK
                     </p>
                 </div>
             </div>
         </div>
     </header>
 
+    <section class="content container mt-5">
+        <h2 class="display-5 text-center pb-4">Apa Itu Opera?</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-8 text-justify">
+                <p>
+                    Sistem ini merupakan sistem yang dapat menggambarkan proses setiap pembentukan peraturan di lingkungan
+                    LPSK,
+                    serta menjadi pojok pemantauan, evaluasi, dan partisipasi publik dalam penyusunan peraturan di
+                    lingkungan LPSK, yaitu:
+                </p>
+                <ol>
+                    <li>
+                        <strong>Pemantauan</strong> dalam proses penyusunan peraturan di lingkungan LPSK digambarkan dalam
+                        bentuk
+                        proses tahapan yang sedang dilalui untuk setiap pembentuan peraturan di lingkungan LPSK.
+                    </li>
+                    <li>
+                        <strong>Evaluasi</strong> dilakukan melalui pemberian ruang bagi masyarakat untuk memberikan
+                        analisis dan
+                        evaluasi terhadap peraturan di lingkungan LPSK yang telah ditetapkan atau terkait analisis kebutuhan
+                        pengaturan yang harus disusun oleh LPSK.
+                    </li>
+                    <li>
+                        <strong>Partisipasi publik</strong> dilakukan dengan memberikan informasi rancangan yang sedang
+                        disusun
+                        oleh LPSK serta memberikan ruang bagi masyarakat untuk memberikan masukan terhadap rancangan
+                        peraturan
+                        tersebut agar menghasilkan regulasi yang berkualitas serta sesuai dengan kebutuhan hukum masyarakat.
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Gambar Section (Disembunyikan di Mobile) -->
+            <div class="col-lg-4 d-none d-lg-flex align-items-center justify-content-center">
+                <img src="{{ asset('images/about-landing.jpg') }}" alt="Tentang Opera" class="img-fluid rounded">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="content container mt-5">
+        <h2 class="display-5 text-center my-5">Alur Proses</h2>
+        {{-- image --}}
+        <div class="d-flex justify-content-center">
+            <img src="{{ asset('images/alur.jpg') }}" alt="Alur Proses Peraturan" class="img-fluid">
+        </div>
+    </section>
 
     <section class="content container mt-5">
         <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="display-5">Peraturan Terbaru</h2>
+                <h2 class="display-5">Daftar Peraturan yang Telah Ditetapkan</h2>
+                <a href="#" class="btn btn-outline-primary">Lihat Semua</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="content container mt-5">
+        <div class="container my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="display-5">Rancangan Peraturan Terbaru</h2>
                 <a href="#" class="btn btn-outline-primary">Lihat Semua</a>
             </div>
 

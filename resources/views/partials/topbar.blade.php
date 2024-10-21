@@ -1,10 +1,10 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-white md:py-3">
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white md:py-3 color-landing">
     <div class="container">
-        <a href="../../index3.html" class="navbar-brand">
+        <a href="{{ route('landing.index') }}" class="navbar-brand">
             <img src="{{ asset('images/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                 style="opacity: .8">
-            <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+            <span class="brand-text font-weight-light text-white">{{ config('app.name') }}</span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -15,17 +15,22 @@
         <div class="collapse navbar-collapse order-3 py-2" id="navbarCollapse">
             <!-- Left navbar links -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="{{ route('landing.index') }}" class="nav-link {{ request()->routeIs('landing.index') ? 'active' : '' }}">Beranda</a>
+                <li class="nav-item ">
+                    <a href="{{ route('landing.index') }}"
+                        class="nav-link text-white {{ request()->routeIs('landing.index') ? 'active' : '' }}">Beranda</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('landing.front-peraturan') }}" class="nav-link">Peraturan</a>
+                <li class="nav-item ">
+                    <a href="{{ route('landing.front-peraturan') }}" class="nav-link text-white">Peraturan</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('landing.public-participation') }}" class="nav-link {{ request()->routeIs('landing.public-participation*') ? 'active' : '' }}">Partisipasi Publik</a>
+                <li class="nav-item ">
+                    <a href="{{ route('landing.evaluation') }}"
+                        class="nav-link text-white {{ request()->routeIs('landing.evaluation*') ? 'active' : '' }}">Analisis
+                        dan Evaluasi</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('landing.evaluation') }}" class="nav-link {{ request()->routeIs('landing.evaluation*') ? 'active' : '' }}">Analisis dan Evaluasi</a>
+                <li class="nav-item ">
+                    <a href="{{ route('landing.public-participation') }}"
+                        class="nav-link text-white {{ request()->routeIs('landing.public-participation*') ? 'active' : '' }}">Partisipasi
+                        Publik</a>
                 </li>
                 {{-- <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"

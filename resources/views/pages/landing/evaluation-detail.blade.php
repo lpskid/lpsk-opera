@@ -22,7 +22,7 @@
         </div>
 
         <div class="row mb-4">
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-12">
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
                         <h3 class="card-title mb-0">{{ $regulation->title }}</h3>
@@ -41,6 +41,12 @@
                             <p class="text-muted">{{ $regulation->date }}</p>
                         </div>
 
+
+                        <div class="mb-3">
+                            <p class="fw-bold mb-1">Lihat Peraturan</p>
+                            <a href="{{ $regulation->jdih_link }}" target="_blank">{{ $regulation->jdih_link }}</a>
+                        </div>
+
                         <div class="mb-3">
                             <p class="fw-bold mb-1">Progres</p>
                             <p class="badge bg-info text-dark">{{ strtoupper(str_replace('_', ' ', $regulation->status)) }}
@@ -56,27 +62,6 @@
                             <p class="fw-bold mb-1">Isi</p>
                             <p>{!! $regulation->content !!}</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title mb-0">Lampiran</h3>
-                    </div>
-
-                    <div class="card-body">
-                        {{-- Jika ada lampiran --}}
-                        @if (count($regulation->attachments) > 0)
-                            @foreach ($regulation->attachments as $attachment)
-                                <a href="{{ asset('storage/' . $attachment->path) }}" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn-app">
-                                    <i class="fas fa-paperclip"></i>Unduh
-                                </a>
-                            @endforeach
-                        @else
-                            <p class="text-muted">Tidak ada lampiran</p>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -176,9 +161,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="content">Evaluasi</label>
+                                <label for="content">Analisis dan Evaluasi</label>
                                 <textarea id="content" name="content" class="form-control" rows="4" data-has-listeners="true"
                                     value="{{ old('content') }}">{{ old('content') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="attachment">Lampiran</label>
+                                <input type="file" name="attachments[]" class="form-control" id="attachment">
+                                <span class="text-muted text-sm">* Jika ada file yang ingin diupload</span>
+                                @error('attachments')
+                                    <br>
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="captcha">Captcha</label>

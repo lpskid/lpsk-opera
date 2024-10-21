@@ -15,6 +15,12 @@
     @include('partials.style')
     @stack('style')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .color-landing {
+            background-color: #2e409d;
+        }
+    </style>
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -30,7 +36,7 @@
         </div>
         <!-- /.content-wrapper -->
 
-        @include('partials.footer')
+        @include('partials.footer-landing')
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->

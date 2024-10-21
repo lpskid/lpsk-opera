@@ -164,9 +164,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="content">Evaluasi</label>
+                                <label for="content">Partisipasi</label>
                                 <textarea id="content" name="content" class="form-control" rows="4" data-has-listeners="true"
                                     value="{{ old('content') }}">{{ old('content') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="attachment">Lampiran</label>
+                                <input type="file" name="attachments[]" class="form-control" id="attachment">
+                                <span class="text-muted text-sm">* Jika ada file yang ingin diupload</span>
+                                @error('attachments')
+                                    <br>
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="captcha">Captcha</label>

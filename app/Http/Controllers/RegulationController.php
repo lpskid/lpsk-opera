@@ -69,7 +69,7 @@ class RegulationController extends Controller
      */
     public function show(string $id)
     {
-        $regulation = Regulation::with(['evaluations'])->find($id);
+        $regulation = Regulation::with(['evaluations', 'publicParticipations'])->find($id);
 
         return view('pages.dashboard.regulation.show', compact('regulation'));
     }
@@ -110,7 +110,7 @@ class RegulationController extends Controller
 
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $file) {
-                $path = $file->store('attachments'); 
+                $path = $file->store('attachments');
                 // Simpan file di folder 'attachments'
 
                 // Simpan informasi lampiran di database
