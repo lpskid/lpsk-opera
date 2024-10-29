@@ -37,7 +37,6 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Nomor Peraturan</th>
                                     <th>Judul</th>
                                     <th>Tanggal</th>
                                     <th>Status</th>
@@ -47,7 +46,6 @@
                                 @foreach ($regulations as $regulation)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $regulation->number }}</td>
                                         <td><a href="{{ route('landing.public-participation.detail', $regulation->slug) }}" >
                                                 {{ $regulation->title }}</a></td>
                                         <th>{{ $regulation->date }}</th>

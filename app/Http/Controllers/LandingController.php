@@ -44,7 +44,7 @@ class LandingController extends Controller
         shuffle($backgroundImages);
         $backgroundImages = array_slice($backgroundImages, 0, 8);
 
-        
+
         // Array of background images
         $backgroundImagesTwo = [
             asset('images/landing/bg-landing-hukum-1.jpg'),
@@ -66,7 +66,7 @@ class LandingController extends Controller
 
     public function evaluation()
     {
-        $regulations = Regulation::all();
+        $regulations = Regulation::where('status', 'analisa_evaluasi')->get();
         return view('pages.landing.evaluation', compact('regulations'));
     }
 
@@ -107,13 +107,13 @@ class LandingController extends Controller
 
     public function regulation()
     {
-        $regulations = Regulation::all();
+        $regulations = Regulation::where('status', 'penetapan')->get();
         return view('pages.landing.regulation', compact('regulations'));
     }
 
     public function publicParticipation()
     {
-        $regulations = Regulation::all();
+        $regulations = Regulation::where('status', 'partisipasi_publik')->get();
 
         return view('pages.landing.public-participation', compact('regulations'));
     }
