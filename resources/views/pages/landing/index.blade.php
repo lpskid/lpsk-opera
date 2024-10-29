@@ -85,7 +85,7 @@
         <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="display-5">Daftar Peraturan yang Telah Ditetapkan</h2>
-                <a href="{{ route('landing.front-peraturan') }}" class="btn btn-outline-primary">Lihat Semua</a>
+                <a href="{{ route('landing.evaluation') }}" class="btn btn-outline-primary">Lihat Semua</a>
             </div>
         </div>
 

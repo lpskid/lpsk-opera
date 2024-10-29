@@ -107,7 +107,7 @@ class LandingController extends Controller
 
     public function regulation()
     {
-        $regulations = Regulation::where('status', 'penetapan')->get();
+        $regulations = Regulation::where('status', ['pengusulan', 'penyusunan_pembahasan', 'persetujuan_pimpinan', 'partisipasi_publik', 'penyelarasan'])->get();
         return view('pages.landing.regulation', compact('regulations'));
     }
 

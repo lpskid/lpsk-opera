@@ -34,6 +34,7 @@
                                         <th>No</th>
                                         <th>Judul</th>
                                         <th>Tanggal</th>
+                                        <th>Status</th>
                                         <th>Dibuat</th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,9 @@
                                                 </a>
                                             </td>
                                             <td>{{ $data->date }}</td>
+                                            <td>
+                                                {{ strtoupper(str_replace('_', ' ', $data->status)) }}
+                                            </td>
 
                                             <td>{{ $data->created_at->diffForHumans() }}</td>
                                         </tr>
