@@ -40,6 +40,7 @@
                         </a>
                     </li>
                 @endcan
+                <li class="nav-header">Data</li>
                 @can('master-data-access')
                     <li class="nav-item">
                         <a href="#"
@@ -73,17 +74,30 @@
                     </li>
                 @endcan
                 @can('regulation-access')
+                    <li class="nav-header">Peratutran</li>
+
                     <li class="nav-item">
                         <a href="{{ route('peraturan.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
+                            <i class="nav-icon fas fa-file-pdf"></i>
                             <p>
-                                Peraturan
+                                Penetapan
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('peraturan.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-file-word"></i>
+                            <p>
+                                Perancangan
                             </p>
                         </a>
                     </li>
                 @endcan
                 </li>
                 @can('log-access')
+                    <li class="nav-header">System</li>
+
                     <li class="nav-item">
                         <a href="#"
                             class="nav-link {{ request()->is('log*') || request()->is('log*') ? 'active' : '' }}">

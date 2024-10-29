@@ -9,7 +9,7 @@
         <div class="container text-center text-white">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
-                    <h1 class="mb-5">Optimalisasi Sistem Penyusunan Peraturan di Lingkungan LPSK</h1>
+                    <h1 class="mb-5">Opini Penyusunan Peraturan di Lingkungan LPSK </h1>
                     <!-- Signup form-->
                     {{-- <form class="form-subscribe" id="contactForm">
                         <div class="row">
