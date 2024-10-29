@@ -21,11 +21,13 @@
             <div class="col-12 col-md-8">
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
-                        <h3 class="card-title mb-0">{{ $regulation->title }}</h3>
+                        <h3 class="card-title mb-0">Detail Peraturan</h3>
                     </div>
 
                     <div class="card-body">
-                        <h4 class="fw-bold mb-4">Rincian</h4>
+                        <h4 class="fw-bold mb-4">
+                            {{ $regulation->title }}
+                        </h4>
 
                         <div class="mb-3">
                             <p class="fw-bold mb-1">Nomor</p>

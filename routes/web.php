@@ -18,6 +18,7 @@ Route::post('/evaluasi', [LandingController::class, 'evaluationStore'])->name('l
 Route::get('/evaluasi/{slug}', [LandingController::class, 'evaluationDetail'])->name('landing.evaluation.detail');
 
 Route::get('/front-peraturan', [LandingController::class, 'regulation'])->name('landing.front-peraturan');
+Route::get('/front-peraturan/{slug}', [LandingController::class, 'regulationDetail'])->name('landing.front-peraturan.detail');
 
 Route::get('/partisipasi-publik', [LandingController::class, 'publicParticipation'])->name('landing.public-participation');
 Route::get('/partisipasi-publik/{slug}', [LandingController::class, 'publicParticipationDetail'])->name('landing.public-participation.detail');

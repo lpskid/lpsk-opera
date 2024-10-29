@@ -41,7 +41,11 @@
                                     @foreach ($regulations as $data)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $data->title }}</td>
+                                            <td>
+                                                <a href="{{ route('landing.front-peraturan.detail', $data->slug) }}">
+                                                    {{ $data->title }}
+                                                </a>
+                                            </td>
                                             <td>{{ $data->date }}</td>
 
                                             <td>{{ $data->created_at->diffForHumans() }}</td>

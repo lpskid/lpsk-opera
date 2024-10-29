@@ -111,6 +111,13 @@ class LandingController extends Controller
         return view('pages.landing.regulation', compact('regulations'));
     }
 
+    public function regulationDetail(string $slug)
+    {
+        $regulation = Regulation::where('slug', $slug)->first();
+
+        return view('pages.landing.regulation-detail', compact('regulation'));
+    }
+
     public function publicParticipation()
     {
         $regulations = Regulation::where('status', 'partisipasi_publik')->get();
