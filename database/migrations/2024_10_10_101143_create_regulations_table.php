@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('regulations', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-            $table->text('jdih_link');
-            $table->string('title');
-            $table->string('slug')->unique();
+            $table->longText('jdih_link')->nullable();
+            $table->longText('title');
+            $table->longText('slug')->unique();
             $table->date('date')->default(date('Y-m-d'));
-            $table->text('information');
-            $table->text('content');
+            $table->longText('information')->nullable();
+            $table->longText('content');
             $table->enum('status', ['pengusulan', 'penyusunan_pembahasan', 'partisipasi_publik', 'persetujuan_pimpinan', 'penyelarasan', 'penetapan', 'pengundangan_peraturan', 'penyusunan_informasi', 'penyebarluasan', 'laporan_proses', 'analisa_evaluasi'])->default('pengusulan');
             $table->timestamps();
         });
