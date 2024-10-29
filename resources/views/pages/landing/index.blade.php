@@ -88,6 +88,24 @@
                 <a href="#" class="btn btn-outline-primary">Lihat Semua</a>
             </div>
         </div>
+
+        <div class="row">
+            @forelse ($fix_regulations as $index => $regulation)
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card text-white position-relative"
+                        style="background-image: url('{{ $backgroundImagesTwo[$index] }}'); background-size: cover; background-position: center; height: 200px;">
+                        <!-- Overlay effect -->
+                        <div class="overlay position-absolute w-100 h-100"
+                            style="background-color: rgba(0, 0, 0, 0.2); top: 0; left: 0;"></div>
+                        <div class="card-body d-flex align-items-center justify-content-center position-relative">
+                            <h5 class="card-title text-center">{{ Str::limit($regulation->title, 30) }}</h5>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p>Tidak ada peraturan terbaru.</p>
+            @endforelse
+        </div>
     </section>
 
     <section class="content container mt-5">
