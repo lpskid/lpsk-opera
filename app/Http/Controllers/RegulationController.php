@@ -10,11 +10,18 @@ class RegulationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($type = null)
     {
-        $regulations = Regulation::all();
+        $query = Regulation::query();
+
+        if ($type) {
+            $query->where('status', $type);
+        }
+
+        $regulations = $query->get();
         return view('pages.dashboard.regulation.index', compact('regulations'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,21 +38,17 @@ class RegulationController extends Controller
     {
         $request->validate([
             'title'          => 'required|unique:regulations,title',
-            'number'         => 'required|unique:regulations,number',
-            'jdih_link' => 'required',
-            'content'   => 'required',
             'information'   => 'required',
             'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation = Regulation::create([
-            'number'          => $request->number,
             'title'          => $request->title,
             'slug'          => \Str::slug($request->title . '-' . \Str::random(6)),
             'jdih_link' => $request->jdih_link,
-            'content'       => $request->content,
+            'content'       => $request->content ?? null,
             'information'   => $request->information,
-            'status'        => 'pengusulan',
+            'status'        => $request->status,
         ]);
 
         if ($request->hasFile('attachments')) {
@@ -60,8 +63,10 @@ class RegulationController extends Controller
             }
         }
 
-
-        return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil dibuat.');
+        if ($request->status == 'pengusulan') {
+            return redirect()->route('peraturan.index', ['type' => 'pengusulan'])->with('success', 'Peraturan berhasil dibuat.');
+        }
+        return redirect()->route('peraturan.index', ['type' => 'perencanaan'])->with('success', 'Peraturan berhasil dibuat.');
     }
 
     /**
@@ -93,18 +98,14 @@ class RegulationController extends Controller
 
         $request->validate([
             'title'          => 'required|unique:regulations,title,' . $id,
-            'number'         => 'required|unique:regulations,number,' . $id,
-            'jdih_link' => 'required',
-            'content'   => 'required',
             'information'   => 'required',
             'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation->update([
-            'number'          => $request->number,
             'title'          => $request->title,
             'jdih_link' => $request->jdih_link,
-            'content'       => $request->content,
+            'content'       => $request->content ?? null,
             'information'   => $request->information,
         ]);
 
@@ -136,11 +137,10 @@ class RegulationController extends Controller
         return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil dihapus.');
     }
 
-    public function updateStatus(string $id)
+    public function updateStatus(Request $request, string $id)
     {
         $regulation = Regulation::find($id);
 
-        // Array status yang tersedia
         $statusOptions = [
             'pengusulan',
             'penyusunan_pembahasan',
@@ -152,21 +152,50 @@ class RegulationController extends Controller
             'penyusunan_informasi',
             'penyebarluasan',
             'laporan_proses',
-            'analisa_evaluasi',
+            'analisa_evaluasi'
         ];
 
-        // Cari posisi status saat ini di dalam array status
-        $currentStatusIndex = array_search($regulation->status, $statusOptions);
-
-        // Jika status saat ini tidak ditemukan atau sudah di akhir, tidak bisa lanjut
-        if ($currentStatusIndex === false || $currentStatusIndex == count($statusOptions) - 1) {
-            return redirect()->back()->with('error', 'Status tidak dapat diperbarui lebih lanjut');
+        if (in_array($request->status, $statusOptions)) {
+            $regulation->status = $request->status;
+            $regulation->save();
+            return response()->json(['success' => true]);
         }
 
-        // Update ke status berikutnya
-        $regulation->status = $statusOptions[$currentStatusIndex + 1];
-        $regulation->save();
-
-        return redirect()->back()->with('success', 'Status berhasil diperbarui');
+        return response()->json(['success' => false], 400);
     }
 }
+
+//     public function updateStatus(string $id)
+//     {
+//         $regulation = Regulation::find($id);
+
+//         // Array status yang tersedia
+//         $statusOptions = [
+//             'pengusulan',
+//             'penyusunan_pembahasan',
+//             'partisipasi_publik',
+//             'persetujuan_pimpinan',
+//             'penyelarasan',
+//             'penetapan',
+//             'pengundangan_peraturan',
+//             'penyusunan_informasi',
+//             'penyebarluasan',
+//             'laporan_proses',
+//             'analisa_evaluasi',
+//         ];
+
+//         // Cari posisi status saat ini di dalam array status
+//         $currentStatusIndex = array_search($regulation->status, $statusOptions);
+
+//         // Jika status saat ini tidak ditemukan atau sudah di akhir, tidak bisa lanjut
+//         if ($currentStatusIndex === false || $currentStatusIndex == count($statusOptions) - 1) {
+//             return redirect()->back()->with('error', 'Status tidak dapat diperbarui lebih lanjut');
+//         }
+
+//         // Update ke status berikutnya
+//         $regulation->status = $statusOptions[$currentStatusIndex + 1];
+//         $regulation->save();
+
+//         return redirect()->back()->with('success', 'Status berhasil diperbarui');
+//     }
+// }

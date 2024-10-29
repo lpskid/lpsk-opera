@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Tambah Pengguna')
+@section('title', 'Ubah Data peraturan')
 
 @push('style')
     @include('style.select2')
@@ -16,16 +16,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="number">Nomor</label>
-                            <input type="text" name="number" class="form-control" id="number"
-                                placeholder="Masukkan Nomor" value="{{ $regulation->number }}">
-                            @error('number')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label for="title">Judul</label>
                             <input type="text" name="title" class="form-control" id="title"
                                 placeholder="Masukkan Judul" value="{{ $regulation->title }}">
@@ -34,7 +24,22 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="number">Tipe</label>
+                            {{-- Select --}}
+                            <select class="form-control" name="status" id="status">
+                                <option value="penetapan" {{ $regulation->status == 'penetapan' ? 'selected' : '' }}>
+                                    Penetapan</option>
+                                <option value="pengusulan" {{ $regulation->status == 'pengusulan' ? 'selected' : '' }}>
+                                    Perencanaan</option>
+                            </select>
+                            @error('number')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="jdih_link_form">
                         <div class="form-group">
                             <label for="jdih_link">Link JDIH</label>
                             <input type="text" name="jdih_link" class="form-control" id="jdih_link"
@@ -64,7 +69,7 @@
                     </div>
 
                     {{-- File attachments --}}
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="attachment_form" style="display: none">
                         <div class="form-group">
                             <label for="attachment">Lampiran</label>
                             <input type="file" name="attachments[]" class="form-control" id="attachment">
@@ -100,6 +105,18 @@
             //Initialize Select2 Elements
             $('.select2').select2({
                 theme: 'bootstrap4'
+            })
+
+
+
+            $('#status').on('change', function() {
+                if ($(this).val() == 'penetapan') {
+                    $('#jdih_link_form').show();
+                    $('#attachment_form').hide();
+                } else {
+                    $('#jdih_link_form').hide();
+                    $('#attachment_form').show();
+                }
             })
         });
     </script>

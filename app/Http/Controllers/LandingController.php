@@ -24,7 +24,25 @@ class LandingController extends Controller
                 ->get();
         }
 
-        return view('pages.landing.index', compact('regulations', 'search'));
+        $newest_regulations = Regulation::latest()->take(8)->get();
+
+        // Array of background images
+        $backgroundImages = [
+            asset('images/landing/bg-landing-hukum-1.jpg'),
+            asset('images/landing/bg-landing-hukum-2.jpg'),
+            asset('images/landing/bg-landing-hukum-3.jpg'),
+            asset('images/landing/bg-landing-hukum-4.jpg'),
+            asset('images/landing/bg-landing-hukum-5.jpg'),
+            asset('images/landing/bg-landing-hukum-6.jpg'),
+            asset('images/landing/bg-landing-hukum-7.jpg'),
+            asset('images/landing/bg-landing-hukum-8.jpg'),
+        ];
+
+        // Shuffle images array and slice the first 8 images
+        shuffle($backgroundImages);
+        $backgroundImages = array_slice($backgroundImages, 0, 8);
+
+        return view('pages.landing.index', compact('regulations', 'search', 'newest_regulations', 'backgroundImages'));
     }
 
     public function evaluation()

@@ -5,7 +5,7 @@
 @section('content')
     <!-- Main content -->
     <header class="d-flex align-items-center justify-content-center"
-        style="background-image: url('{{ asset('images/background-header.jpg') }}'); background-size: cover; background-position: center; height: 500px;">
+        style="background-image: url('{{ asset('images/bg-landing-lpsk.jpg') }}'); background-size: cover; background-position: center; height: 500px;">
         <div class="container text-center text-white">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
@@ -67,7 +67,7 @@
 
             <!-- Gambar Section (Disembunyikan di Mobile) -->
             <div class="col-lg-4 d-none d-lg-flex align-items-center justify-content-center">
-                <img src="{{ asset('images/about-landing.jpg') }}" alt="Tentang Opera" class="img-fluid rounded">
+                <img src="{{ asset('images/logo.png') }}" alt="Tentang Opera" class="img-fluid rounded">
             </div>
         </div>
     </section>
@@ -98,87 +98,25 @@
             </div>
 
             <div class="row">
-                <!-- Card 1 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 1</h5>
+                @forelse ($newest_regulations as $index => $regulation)
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card text-white position-relative"
+                            style="background-image: url('{{ $backgroundImages[$index] }}'); background-size: cover; background-position: center; height: 200px;">
+                            <!-- Overlay effect -->
+                            <div class="overlay position-absolute w-100 h-100"
+                                style="background-color: rgba(0, 0, 0, 0.2); top: 0; left: 0;"></div>
+                            <div class="card-body d-flex align-items-center justify-content-center position-relative">
+                                <h5 class="card-title text-center">{{ Str::limit($regulation->title, 30) }}</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 2</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 3</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 4</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 5</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 6</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 7 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 7</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 8 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-white"
-                        style="background-image: url('https://picsum.photos/seed/law/300/200?grayscale'); background-size: cover; background-position: center; height: 200px;">
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                            <h5 class="card-title text-center">Peraturan 8</h5>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <p>Tidak ada peraturan terbaru.</p>
+                @endforelse
             </div>
         </div>
+
+
 
         {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

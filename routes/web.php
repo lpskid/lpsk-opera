@@ -64,7 +64,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 
-    Route::resource('peraturan', RegulationController::class);
+    Route::get('peraturan/data/{type?}', [RegulationController::class, 'index'])->name('peraturan.index');
+    Route::resource('peraturan', RegulationController::class)->except(['index']);
+
     Route::put('peraturan/update-status/{id}', [RegulationController::class, 'updateStatus'])->name('peraturan.update-status');
 
     Route::get('/log', LogController::class)->name('log');

@@ -74,23 +74,20 @@
                     </li>
                 @endcan
                 @can('regulation-access')
-                    <li class="nav-header">Peratutran</li>
+                    <li class="nav-header">Peraturan</li>
 
                     <li class="nav-item">
-                        <a href="{{ route('peraturan.index') }}" class="nav-link">
+                        <a href="{{ route('peraturan.index', ['type' => 'penetapan']) }}"
+                            class="nav-link {{ request('type') === 'penetapan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file-pdf"></i>
-                            <p>
-                                Penetapan
-                            </p>
+                            <p>Penetapan</p>
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a href="{{ route('peraturan.index') }}" class="nav-link">
-                            <i class="nav-icon fa fa-file-word"></i>
-                            <p>
-                                Perancangan
-                            </p>
+                        <a href="{{ route('peraturan.index', ['type' => 'pengusulan']) }}"
+                            class="nav-link {{ request('type') === 'pengusulan' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-file-pdf"></i>
+                            <p>Perencanaan</p>
                         </a>
                     </li>
                 @endcan
