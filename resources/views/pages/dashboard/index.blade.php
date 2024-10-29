@@ -25,7 +25,7 @@
                 <div class="icon">
                     <i class="fas fa-file-alt"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'pengusulan']) }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
                 <div class="icon">
                     <i class="fas fa-edit"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'penyusunan_pembahasan']) }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 <div class="icon">
                     <i class="fas fa-comment-dots"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'partisipasi_publik']) }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
                 <div class="icon">
                     <i class="fas fa-check-double"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'persetujuan_pimpinan']) }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -81,7 +81,7 @@
                 <div class="icon">
                     <i class="fas fa-sync-alt"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'penyelarasan'])  }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -95,7 +95,7 @@
                 <div class="icon">
                     <i class="fas fa-lock"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'penetapan']) }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -109,7 +109,7 @@
                 <div class="icon">
                     <i class="fas fa-bell"></i>
                 </div>
-                <a href="#" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('peraturan.index', ['type' => 'pengundangan_peraturan']) }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

@@ -78,10 +78,11 @@
 
                     <li class="nav-item">
                         <a href="{{ route('peraturan.index') }}"
-                            class="nav-link {{ request()->routeIs('peraturan.index') && is_null(request('type')) ? 'active' : '' }}">
+                            class="nav-link {{ request()->routeIs('peraturan.index') && !in_array(request('type'), ['penetapan', 'pengusulan']) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file-pdf"></i>
                             <p>Seluruh Peraturan</p>
                         </a>
+
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('peraturan.index', ['type' => 'penetapan']) }}"
