@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -23,7 +24,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="login-logo">  
+        <div class="login-logo">
             <img src="{{ asset('images/logo.png') }}" width="200px" alt="">
         </div>
         <div class="card card-outline card-primary">
