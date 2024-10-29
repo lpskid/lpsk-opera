@@ -38,7 +38,7 @@ class RegulationController extends Controller
     {
         $request->validate([
             'title'          => 'required|unique:regulations,title',
-            'information'   => 'required',
+            'content'   => 'required',
             'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
@@ -46,8 +46,8 @@ class RegulationController extends Controller
             'title'          => $request->title,
             'slug'          => \Str::slug($request->title . '-' . \Str::random(6)),
             'jdih_link' => $request->jdih_link,
-            'content'       => $request->content ?? null,
-            'information'   => $request->information,
+            'content'       => $request->content,
+            'information'   => $request->information ?? null,
             'status'        => $request->status,
         ]);
 
@@ -98,15 +98,15 @@ class RegulationController extends Controller
 
         $request->validate([
             'title'          => 'required|unique:regulations,title,' . $id,
-            'information'   => 'required',
+            'content'   => 'required',
             'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation->update([
             'title'          => $request->title,
             'jdih_link' => $request->jdih_link,
-            'content'       => $request->content ?? null,
-            'information'   => $request->information,
+            'content'       => $request->content,
+            'information'   => $request->information ?? null,
         ]);
 
         if ($request->hasFile('attachments')) {
