@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->longText('jdih_link')->nullable();
             $table->longText('title');
-            $table->longText('slug')->unique();
+            $table->longText('slug');
             $table->date('date')->default(date('Y-m-d'));
             $table->longText('information')->nullable();
             $table->longText('content');
