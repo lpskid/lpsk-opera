@@ -66,7 +66,7 @@ class RegulationController extends Controller
         if ($request->status == 'pengusulan') {
             return redirect()->route('peraturan.index', ['type' => 'pengusulan'])->with('success', 'Peraturan berhasil dibuat.');
         }
-        return redirect()->route('peraturan.index', ['type' => 'perencanaan'])->with('success', 'Peraturan berhasil dibuat.');
+        return redirect()->route('peraturan.index', ['type' => 'penetapan'])->with('success', 'Peraturan berhasil dibuat.');
     }
 
     /**
