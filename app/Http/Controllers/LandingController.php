@@ -24,7 +24,7 @@ class LandingController extends Controller
                 ->get();
         }
 
-        $fix_regulations = Regulation::where('status', 'penetapan')->get();
+        $fix_regulations = Regulation::where('status', ['penetapan', 'pengundangan_peraturan', 'penyusunan_informasi', 'penyebarluasan', 'laporan_proses', 'analisa_evaluasi'])->get();
 
         $newest_regulations = Regulation::latest()->take(8)->get();
 
@@ -107,7 +107,8 @@ class LandingController extends Controller
 
     public function regulation()
     {
-        $regulations = Regulation::where('status', ['pengusulan', 'penyusunan_pembahasan', 'persetujuan_pimpinan', 'partisipasi_publik', 'penyelarasan'])->get();
+        // $regulations = Regulation::where('status', ['pengusulan', 'penyusunan_pembahasan', 'persetujuan_pimpinan', 'partisipasi_publik', 'penyelarasan'])->get();
+        $regulations = Regulation::all();
         return view('pages.landing.regulation', compact('regulations'));
     }
 
