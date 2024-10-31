@@ -24,7 +24,7 @@ class LandingController extends Controller
                 ->get();
         }
 
-        $fix_regulations = Regulation::where('status', ['penetapan', 'pengundangan_peraturan', 'penyusunan_informasi', 'penyebarluasan', 'laporan_proses', 'analisa_evaluasi'])->get();
+        $fix_regulations = Regulation::where('status', ['analisa_evaluasi'])->latest()->take(8)->get();
 
         $newest_regulations = Regulation::latest()->take(8)->get();
 
