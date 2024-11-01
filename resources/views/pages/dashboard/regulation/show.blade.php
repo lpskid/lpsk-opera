@@ -66,10 +66,12 @@
                 </thead>
                 <tbody>
                     @foreach ($regulation->evaluations as $item)
-                        <th>{{ $loop->iteration }}</th>
-                        <td>{{ $item->name }}</td>
-                        <th>{{ $item->email }}</th>
-                        <th>{{ $item->phone }}</th>
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->phone }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -91,11 +93,14 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($regulation->publicParticipations as $item)
-                        <th>{{ $loop->iteration }}</th>
-                        <td>{{ $item->name }}</td>
-                        <th>{{ $item->email }}</th>
-                        <th>{{ $item->phone }}</th>
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->phone }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
