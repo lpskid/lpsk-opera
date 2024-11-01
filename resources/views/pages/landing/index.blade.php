@@ -86,7 +86,7 @@
             <div class="col-md-12">
                 <div class="card rounded-lg mb-2 bg-gradient-dark">
                     <img class="card-img-top" style="object-fit: cover; width: 100%; height: 200px"
-                        src="{{ asset('images/landing/bg-landing-hukum-1.jpg') }}" alt="Dist Photo 1">
+                        src="{{ asset('images/landing/bg-landing-hukum-8.jpg') }}" alt="Dist Photo 1">
                     <div class="card-img-overlay d-flex flex-column justify-content-end">
                         <h5 class="card-title text-primary text-white">Daftar Peraturan yang Telah Ditetapkan</h5>
                         <p class="card-text text-white pb-2 pt-1">
@@ -131,7 +131,7 @@
             <div class="col-md-12">
                 <div class="card rounded-lg mb-2 bg-gradient-dark">
                     <img class="card-img-top" style="object-fit: cover; width: 100%; height: 200px"
-                        src="{{ asset('images/landing/bg-landing-hukum-1.jpg') }}" alt="Dist Photo 1">
+                        src="{{ asset('images/landing/bg-landing-hukum-2.jpg') }}" alt="Dist Photo 1">
                     <div class="card-img-overlay d-flex flex-column justify-content-end">
                         <h5 class="card-title text-primary text-white">Rancangan Peraturan Terbaru</h5>
                         <p class="card-text text-white pb-2 pt-1">
