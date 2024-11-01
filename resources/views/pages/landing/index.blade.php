@@ -82,7 +82,21 @@
     </section>
 
     <section class="content container mt-5">
-        <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card rounded-lg mb-2 bg-gradient-dark">
+                    <img class="card-img-top" style="object-fit: cover; width: 100%; height: 200px"
+                        src="{{ asset('images/landing/bg-landing-hukum-1.jpg') }}" alt="Dist Photo 1">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end">
+                        <h5 class="card-title text-primary text-white">Daftar Peraturan yang Telah Ditetapkan</h5>
+                        <p class="card-text text-white pb-2 pt-1">
+                            <a href="{{ route('landing.evaluation') }}" class="btn btn-primary my-2">Lihat Semua</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="display-5">Daftar Peraturan yang Telah Ditetapkan</h2>
                 <a href="{{ route('landing.evaluation') }}" class="btn btn-outline-primary">Lihat Semua</a>
@@ -108,11 +122,25 @@
             @empty
                 <p>Tidak ada peraturan terbaru.</p>
             @endforelse
-        </div>
+        </div> --}}
     </section>
 
     <section class="content container mt-5">
-        <div class="container my-5">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card rounded-lg mb-2 bg-gradient-dark">
+                    <img class="card-img-top" style="object-fit: cover; width: 100%; height: 200px"
+                        src="{{ asset('images/landing/bg-landing-hukum-1.jpg') }}" alt="Dist Photo 1">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end">
+                        <h5 class="card-title text-primary text-white">Rancangan Peraturan Terbaru</h5>
+                        <p class="card-text text-white pb-2 pt-1">
+                            <a href="{{ route('landing.evaluation') }}" class="btn btn-primary my-2">Lihat Semua</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="display-5">Rancangan Peraturan Terbaru</h2>
                 <a href="{{ route('landing.public-participation') }}" class="btn btn-outline-primary">Lihat Semua</a>
@@ -136,7 +164,7 @@
                 @empty
                     <p>Tidak ada peraturan terbaru.</p>
                 @endforelse
-            </div>
+            </div> --}}
         </div>
 
 
