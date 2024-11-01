@@ -87,7 +87,7 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Tanggal</th>
-                        <th>Status</th>
+                        <th>No Telepon</th>
                     </tr>
                 </thead>
                 <tbody>
