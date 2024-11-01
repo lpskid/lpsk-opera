@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($$regulation->evaluations as $item)
+                    @foreach ($regulation->evaluations as $item)
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $item->name }}</td>
                         <th>{{ $item->email }}</th>
@@ -91,8 +91,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach ($$regulation->publicParticipations as $item)
+                    @foreach ($regulation->publicParticipations as $item)
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $item->name }}</td>
                         <th>{{ $item->email }}</th>
