@@ -19,27 +19,25 @@
                         <p class="mb-0 badge badge-success">{{ strtoupper($regulation->status) }}</p>
                     </div>
 
-                    @if($regulation->jdih_link)
-                        
-                    <div class="mt-2">
-                        <h5 class="fw-bold">Link JDIH</h5>
-                        <a href="{{ $regulation->jdih_link }}" target="_blank" rel="noopener noreferrer">
-                            {{ $regulation->jdih_link }}
-                        </a>
-                    </div>
+                    @if ($regulation->jdih_link)
+                        <div class="mt-2">
+                            <h5 class="fw-bold">Link JDIH</h5>
+                            <a href="{{ $regulation->jdih_link }}" target="_blank" rel="noopener noreferrer">
+                                {{ $regulation->jdih_link }}
+                            </a>
+                        </div>
                     @endif
                 </div>
             </div>
 
             <div class="row mt-4">
                 <div class="col-12">
-                    @if($regulation->information)
-                        
-                    <div class="content py-2">
-                        <h5 class="fw-bold">Keterangan</h5>
-                        <!-- Information -->
-                        <p class="text-muted">{!! $regulation->information !!}</p>
-                    </div>
+                    @if ($regulation->information)
+                        <div class="content py-2">
+                            <h5 class="fw-bold">Keterangan</h5>
+                            <!-- Information -->
+                            <p class="text-muted">{!! $regulation->information !!}</p>
+                        </div>
                     @endif
 
                     <div class="content py-2">
@@ -60,13 +58,20 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Judul</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>No Telepon</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($$regulation->evaluations as $item)
+                        <th>{{ $loop->iteration }}</th>
+                        <td>{{ $item->name }}</td>
+                        <th>{{ $item->email }}</th>
+                        <th>{{ $item->phone }}</th>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
@@ -86,6 +91,14 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    @foreach ($$regulation->publicParticipations as $item)
+                        <th>{{ $loop->iteration }}</th>
+                        <td>{{ $item->name }}</td>
+                        <th>{{ $item->email }}</th>
+                        <th>{{ $item->phone }}</th>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
