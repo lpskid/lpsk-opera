@@ -61,7 +61,6 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>No Telepon</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,7 +88,6 @@
                         <th>Judul</th>
                         <th>Tanggal</th>
                         <th>Status</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
