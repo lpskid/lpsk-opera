@@ -90,7 +90,7 @@
                     <div class="card-img-overlay d-flex flex-column justify-content-end">
                         <h5 class="card-title text-primary text-white">Daftar Peraturan yang Telah Ditetapkan</h5>
                         <p class="card-text text-white pb-2 pt-1">
-                            <a href="{{ route('landing.evaluation') }}" class="btn btn-primary my-2">Lihat Semua</a>
+                            <a href="{{ route('landing.public-participation') }}" class="btn btn-primary my-2">Lihat Semua</a>
                         </p>
                     </div>
                 </div>
