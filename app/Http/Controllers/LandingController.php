@@ -61,7 +61,13 @@ class LandingController extends Controller
         shuffle($backgroundImagesTwo);
         $backgroundImagesTwo = array_slice($backgroundImagesTwo, 0, 8);
 
-        return view('pages.landing.index', compact('regulations', 'search', 'newest_regulations', 'backgroundImages', 'fix_regulations', 'backgroundImagesTwo'));
+        $participant_public = PublicParticipation::count();
+        $participant_evaluation = Evaluation::count();
+
+        $new_regulations = Regulation::where('status', ['pengusulan', 'penyusunan_pembahasan', 'partisipasi_publik'])->count();
+        $fixed_regulations = Regulation::where('status', ['pengundangan_peraturan', 'penyusunan_informasi', 'penyebarluasan', 'laporan_proses', 'analisa_evaluasi'])->count();
+        
+        return view('pages.landing.index', compact('regulations', 'search', 'newest_regulations', 'backgroundImages', 'fix_regulations', 'backgroundImagesTwo', 'participant_public', 'participant_evaluation', 'new_regulations', 'fixed_regulations'));
     }
 
     public function evaluation()

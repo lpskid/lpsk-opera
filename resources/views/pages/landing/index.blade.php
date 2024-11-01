@@ -176,6 +176,57 @@
         </div> --}}
     </section>
 
+    <section class="content container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Statistik Partisipasi Masyarakat</h3>
+
+                        {{-- <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div> --}}
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="barChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Data Peraturan</h3>
+
+                        {{-- <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div> --}}
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="regulationChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- <section class="content container">
         <div class="py-5">
             <h2 class="text-center display-5">Cari Peraturan</h2>
@@ -220,3 +271,68 @@
         </div>
     </section> --}}
 @endsection
+
+@push('script')
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+    <script>
+        // Data for the bar chart
+        var barChartData = {
+            labels: ['Partisipasi Publik', 'Analisis Evaluasi'], // Label untuk tiap data
+            datasets: [{
+                    label: 'Partisipasi Publik',
+                    backgroundColor: '#28a745', // Warna untuk Public Participation
+                    data: [{{ $participant_public }}, 0] // Data Public Participation
+                },
+                {
+                    label: 'Analisis Evaluasi',
+                    backgroundColor: '#17a2b8', // Warna untuk Evaluation
+                    data: [0, {{ $participant_evaluation }}] // Data Evaluation
+                }
+            ]
+        };
+
+        var barChartCanvas = $('#barChart').get(0).getContext('2d');
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        };
+
+        // Membuat bar chart
+        new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        });
+
+        // Data for the bar chart
+        var regulationChartData = {
+            labels: ['Rancangan', 'Penetapan'], // Label untuk tiap data
+            datasets: [{
+                    label: 'Rancangan',
+                    backgroundColor: '#28a745', // Warna untuk Public Participation
+                    data: [{{ $new_regulations }}, 0] // Data Public Participation
+                },
+                {
+                    label: 'Penetapan',
+                    backgroundColor: '#17a2b8', // Warna untuk Evaluation
+                    data: [0, {{ $fixed_regulations }}] // Data Evaluation
+                }
+            ]
+        };
+
+        var regulationChartCanvas = $('#regulationChart').get(0).getContext('2d');
+        var regulationChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        };
+
+        // Membuat bar chart
+        new Chart(regulationChartCanvas, {
+            type: 'bar',
+            data: regulationChartData,
+            options: regulationChartOptions
+        });
+    </script>
+@endpush
