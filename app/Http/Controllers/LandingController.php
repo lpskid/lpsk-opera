@@ -86,9 +86,7 @@ class LandingController extends Controller
             'age' => 'required',
             'gender' => 'required',
             'content' => 'required',
-            'captcha' => 'required|captcha',
-        ], [
-            'captcha.captcha' => 'Captcha tidak sesuai',
+            // 'captcha' => 'required|captcha',
         ]);
 
         Evaluation::create([
@@ -141,9 +139,7 @@ class LandingController extends Controller
             'content' => 'required',
             'status' => 'required',
             'age' => 'required',
-            'captcha' => 'required|captcha',
-        ], [
-            'captcha.captcha' => 'Captcha tidak sesuai',
+            // 'captcha' => 'required|captcha',
         ]);
 
         PublicParticipation::create([
