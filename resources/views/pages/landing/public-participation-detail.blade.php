@@ -70,7 +70,6 @@
                                 <a href="{{ Storage::url($attachment->path) }}" target="_blank" rel="noopener noreferrer"
                                     class="btn btn-app">
                                     <i class="fas fa-paperclip"></i>Unduh
-                                    {{ $attachment->name }}
                                 </a>
                                 {{-- <a class="btn btn-app">
                                     <i class="fas fa-save"></i> Save
