@@ -179,13 +179,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="captcha">Captcha</label>
-                                <br>
-                                <img src="{{ captcha_src() }}" alt="captcha" id="captcha-img">
-                                <br>
-                                <input type="text" id="captcha" name="captcha" class="form-control">
-                            </div> --}}
+                            {{-- <div  --}}
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Submit</button>
