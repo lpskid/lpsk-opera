@@ -88,6 +88,7 @@
                         <th>Judul</th>
                         <th>Tanggal</th>
                         <th>No Telepon</th>
+                        <th>Isi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +99,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
+                            <td>{{ $item->content }}</td>
                         </tr>
                     @endforeach
                 </tbody>
