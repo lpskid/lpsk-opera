@@ -67,7 +67,7 @@
                         {{-- Jika ada lampiran --}}
                         @if (count($regulation->attachments) > 0)
                             @foreach ($regulation->attachments as $attachment)
-                                <a href="{{ $attachment->path }}" target="_blank" rel="noopener noreferrer"
+                                <a href="{{ Storage::url($attachment->path) }}" target="_blank" rel="noopener noreferrer"
                                     class="btn btn-app">
                                     <i class="fas fa-paperclip"></i>Unduh
                                     {{ $attachment->name }}
