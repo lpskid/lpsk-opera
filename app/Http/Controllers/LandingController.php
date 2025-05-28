@@ -180,6 +180,16 @@ class LandingController extends Controller
     {
         $regulation = Regulation::with('publicParticipations')->where('slug', $slug)->first();
 
+        $regulation = Regulation::where('slug', $slug)->first();
+
+        $sessionKey = 'viewed_regulation_' . $regulation->id;
+
+        // Cek apakah regulation ini sudah dilihat dalam session
+        if (!session()->has($sessionKey)) {
+            $regulation->increment('total_views');
+            session()->put($sessionKey, true);
+        }
+
         return view('pages.landing.public-participation-detail', compact('regulation'));
     }
 }

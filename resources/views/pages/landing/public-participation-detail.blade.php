@@ -55,6 +55,19 @@
                             <p>{!! $regulation->content !!}</p>
                         </div>
                     </div>
+                    {{-- Tampilkan mata untuk total_views dan total partisipasi--}}
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <i class="fas fa-eye"></i>
+                                <span class="text-muted">Dilihat {{ $regulation->total_views }} kali</span>
+                            </div>
+                            <div>
+                                <i class="fas fa-users"></i>
+                                <span class="text-muted">Total Partisipasi {{ $regulation->publicParticipations->count() }} orang</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-4">
