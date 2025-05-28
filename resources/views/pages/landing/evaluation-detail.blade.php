@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title mb-0">Rekam Jejak</h3>
@@ -104,7 +104,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-12 col-md-12">
                 <div class="card">
@@ -151,9 +151,9 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="age">Umur</label>
-                                <input type="number" id="age" name="age" class="form-control"
-                                    data-has-listeners="true" value="{{ old('age') }}" />
+                                <label for="company">Nama Instansi</label>
+                                <input type="text" id="company" name="company" class="form-control"
+                                    data-has-listeners="true" value="{{ old('company') }}" />
                             </div>
                             <div class="form-group">
                                 {{-- Gender --}}

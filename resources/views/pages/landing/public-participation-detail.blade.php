@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title mb-0">Rekam Jejak</h3>
@@ -115,7 +115,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-12 col-md-12">
                 <div class="card">
@@ -150,6 +150,11 @@
                                     <option value="2">Kuliah</option>
                                     <option value="3">Tidak Bekerja</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Nama Instansi</label>
+                                <input type="text" name="company" id="company" class="form-control"
+                                    data-has-listeners="true" fdprocessedid="a3llc7" value="{{ old('company') }}">
                             </div>
                             <div class="form-group">
                                 <label for="age">Umur</label>

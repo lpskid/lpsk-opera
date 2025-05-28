@@ -66,7 +66,7 @@ class LandingController extends Controller
 
         $new_regulations = Regulation::where('status', ['pengusulan', 'penyusunan_pembahasan', 'partisipasi_publik'])->count();
         $fixed_regulations = Regulation::where('status', ['pengundangan_peraturan', 'penyusunan_informasi', 'penyebarluasan', 'laporan_proses', 'analisa_evaluasi'])->count();
-        
+
         return view('pages.landing.index', compact('regulations', 'search', 'newest_regulations', 'backgroundImages', 'fix_regulations', 'backgroundImagesTwo', 'participant_public', 'participant_evaluation', 'new_regulations', 'fixed_regulations'));
     }
 
@@ -98,6 +98,7 @@ class LandingController extends Controller
             'age' => $request->age,
             'gender' => $request->gender,
             'content' => $request->content,
+            'company' => $request->company ?? null,
         ]);
 
         return redirect()->back()->with('success', 'Terima kasih, kami akan segera menghubungi anda.');
@@ -151,6 +152,7 @@ class LandingController extends Controller
             'age' => $request->age,
             'gender' => $request->gender,
             'content' => $request->content,
+            'company' => $request->company ?? null,
         ]);
 
         return redirect()->back()->with('success', 'Terima kasih, kami akan segera menghubungi anda.');

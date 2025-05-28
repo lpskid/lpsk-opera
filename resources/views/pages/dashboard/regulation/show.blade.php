@@ -87,8 +87,9 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Judul</th>
-                        <th>Tanggal</th>
+                        <th>Nama</th>
+                        <th>Instansi</th>
+                        <th>Email</th>
                         <th>No Telepon</th>
                         <th>Isi</th>
                     </tr>
@@ -99,6 +100,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
+                            <td>{{ $item->company ??  '-' }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->content }}</td>

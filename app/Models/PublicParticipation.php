@@ -13,6 +13,7 @@ class PublicParticipation extends Model
         'regulation_id',
         'name',
         'email',
+        'company',
         'phone',
         'status',
         'age',
