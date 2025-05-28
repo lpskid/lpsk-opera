@@ -26,6 +26,10 @@
                     Partisipasi Publik
                 </h3>
             </div>
+
+            <div class="col-12">
+                <canvas id="topParticipationChart" height="200"></canvas>
+            </div>
         </div>
 
         <div class="row">
@@ -111,4 +115,51 @@
             })
         });
     </script>
+
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+<script>
+    var topParticipationLabels = {!! json_encode($regulations->pluck('title')) !!};
+    var topParticipationData = {!! json_encode($regulations->pluck('public_participations_count')) !!};
+
+    var topParticipationChartCanvas = $('#topParticipationChart').get(0).getContext('2d');
+
+    var pieColors = [
+        '#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8',
+        '#6c757d', '#6610f2', '#e83e8c', '#fd7e14', '#20c997'
+    ];
+
+    var topParticipationChartData = {
+        labels: topParticipationLabels,
+        datasets: [{
+            data: topParticipationData,
+            backgroundColor: pieColors,
+        }]
+    };
+
+    var topParticipationChartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        let label = context.label || '';
+                        let value = context.parsed || 0;
+                        return `${label}: ${value} partisipasi`;
+                    }
+                }
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    };
+
+    new Chart(topParticipationChartCanvas, {
+        type: 'pie',
+        data: topParticipationChartData,
+        options: topParticipationChartOptions
+    });
+</script>
+
 @endpush

@@ -146,7 +146,13 @@ class LandingController extends Controller
     {
         $regulations = Regulation::where('status', 'partisipasi_publik')->get();
 
-        return view('pages.landing.public-participation', compact('regulations'));
+        $regulationsChart = Regulation::withCount('publicParticipations')
+            ->where('status', 'partisipasi_publik')
+            ->orderByDesc('public_participations_count')
+            ->take(10)
+            ->get();
+
+        return view('pages.landing.public-participation', compact('regulations', 'regulationsChart'));
     }
 
     public function publicParticipationStore(Request $request)
