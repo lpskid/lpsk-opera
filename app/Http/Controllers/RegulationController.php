@@ -37,18 +37,19 @@ class RegulationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'          => 'required|unique:regulations,title',
-            'content'   => 'required',
-            'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
+            'title' => 'required|unique:regulations,title',
+            'content' => 'required',
+            'attachments.*' => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation = Regulation::create([
-            'title'          => $request->title,
-            'slug'          => \Str::slug($request->title . '-' . \Str::random(6)),
+            'title' => $request->title,
+            'slug' => \Str::slug($request->title . '-' . \Str::random(6)),
             'jdih_link' => $request->jdih_link,
-            'content'       => $request->content,
-            'information'   => $request->information ?? null,
-            'status'        => $request->status,
+            'content' => $request->content,
+            'information' => $request->information ?? null,
+            'status' => $request->status,
+            'date' => date('Y-m-d'),
         ]);
 
         if ($request->hasFile('attachments')) {
@@ -97,16 +98,16 @@ class RegulationController extends Controller
         $regulation = Regulation::find($id);
 
         $request->validate([
-            'title'          => 'required|unique:regulations,title,' . $id,
-            'content'   => 'required',
-            'attachments.*'     => 'sometimes|mimes:pdf,doc,docx|max:20000',
+            'title' => 'required|unique:regulations,title,' . $id,
+            'content' => 'required',
+            'attachments.*' => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
         $regulation->update([
-            'title'          => $request->title,
+            'title' => $request->title,
             'jdih_link' => $request->jdih_link,
-            'content'       => $request->content,
-            'information'   => $request->information ?? null,
+            'content' => $request->content,
+            'information' => $request->information ?? null,
         ]);
 
         if ($request->hasFile('attachments')) {
