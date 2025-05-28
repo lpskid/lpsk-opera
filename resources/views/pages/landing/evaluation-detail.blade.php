@@ -177,6 +177,13 @@
                                 </select>
                             </div>
 
+                            {{-- Umur --}}
+                            <div class="form-group">
+                                <label for="age">Umur</label>
+                                <input type="number" id="age" name="age" class="form-control"
+                                    data-has-listeners="true" value="{{ old('age') }}" />
+                            </div>
+
                             <div class="form-group">
                                 <label for="content">Analisis dan Evaluasi</label>
                                 <textarea id="content" name="content" class="form-control" rows="4" data-has-listeners="true"
