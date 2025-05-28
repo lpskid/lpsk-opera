@@ -106,9 +106,19 @@ class LandingController extends Controller
 
     public function evaluationDetail(string $slug)
     {
-        $regulation = Regulation::with('evaluations')->where('slug', $slug)->first();
+        $regulation = Regulation::with('evaluations')->where('slug', $slug)->firstOrFail();
+
+        $sessionKey = 'viewed_regulation_' . $regulation->id;
+
+        // Cek apakah regulation ini sudah dilihat dalam session
+        if (!session()->has($sessionKey)) {
+            $regulation->increment('total_views');
+            session()->put($sessionKey, true);
+        }
+
         return view('pages.landing.evaluation-detail', compact('regulation'));
     }
+
 
     public function regulation()
     {
@@ -120,6 +130,14 @@ class LandingController extends Controller
     public function regulationDetail(string $slug)
     {
         $regulation = Regulation::where('slug', $slug)->first();
+
+        $sessionKey = 'viewed_regulation_' . $regulation->id;
+
+        // Cek apakah regulation ini sudah dilihat dalam session
+        if (!session()->has($sessionKey)) {
+            $regulation->increment('total_views');
+            session()->put($sessionKey, true);
+        }
 
         return view('pages.landing.regulation-detail', compact('regulation'));
     }
