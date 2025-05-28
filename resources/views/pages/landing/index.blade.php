@@ -9,7 +9,7 @@
         <div class="container text-center text-white">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
-                    <h1 class="mb-5">Opini Penyusunan Peraturan di Lingkungan LPSK </h1>
+                    <h1 class="mb-5">Opini Penyusunan Peraturan di Lingkungan LPSK</h1>
                     <!-- Signup form-->
                     {{-- <form class="form-subscribe" id="contactForm">
                         <div class="row">
@@ -33,10 +33,10 @@
         </div>
     </header>
 
-    <section class="content container mt-5">
-        <h2 class="display-5 text-center pb-4">Apa Itu Opera?</h2>
+    <section class="container mt-5 content">
+        <h2 class="pb-4 text-center display-5">Apa Itu Opera?</h2>
         <div class="row align-items-center">
-            <div class="col-lg-8 text-justify">
+            <div class="text-justify col-lg-8">
                 <p>
                     Sistem ini merupakan sistem yang dapat menggambarkan proses setiap pembentukan peraturan di lingkungan
                     LPSK,
@@ -67,37 +67,37 @@
 
             <!-- Gambar Section (Disembunyikan di Mobile) -->
             <div class="col-lg-4 d-none d-lg-flex align-items-center justify-content-center">
-                <img src="{{ asset('images/logo.png') }}" alt="Tentang Opera" class="img-fluid rounded">
+                <img src="{{ asset('images/logo.png') }}" alt="Tentang Opera" class="rounded img-fluid">
             </div>
         </div>
     </section>
 
 
-    <section class="content container mt-5">
-        <h2 class="display-5 text-center my-5">Alur Proses</h2>
+    <section class="container mt-5 content">
+        <h2 class="my-5 text-center display-5">Alur Proses</h2>
         {{-- image --}}
         <div class="d-flex justify-content-center">
             <img src="{{ asset('images/alur.jpg') }}" alt="Alur Proses Peraturan" class="img-fluid">
         </div>
     </section>
 
-    <section class="content container mt-5">
+    <section class="container mt-5 content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card rounded-lg mb-2 bg-gradient-dark">
+                <div class="mb-2 rounded-lg card bg-gradient-dark">
                     <img class="card-img-top" style="object-fit: cover; width: 100%; height: 200px"
                         src="{{ asset('images/landing/bg-landing-hukum-8.jpg') }}" alt="Dist Photo 1">
                     <div class="card-img-overlay d-flex flex-column justify-content-end">
-                        <h5 class="card-title text-primary text-white">Daftar Peraturan yang Telah Ditetapkan</h5>
-                        <p class="card-text text-white pb-2 pt-1">
-                            <a href="{{ route('landing.evaluation') }}" class="btn btn-primary my-2">Lihat Semua</a>
+                        <h5 class="text-white card-title text-primary">Daftar Peraturan yang Telah Ditetapkan</h5>
+                        <p class="pt-1 pb-2 text-white card-text">
+                            <a href="{{ route('landing.evaluation') }}" class="my-2 btn btn-primary">Lihat Semua</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         {{-- <div class="container my-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="mb-4 d-flex justify-content-between align-items-center">
                 <h2 class="display-5">Daftar Peraturan yang Telah Ditetapkan</h2>
                 <a href="{{ route('landing.evaluation') }}" class="btn btn-outline-primary">Lihat Semua</a>
             </div>
@@ -105,16 +105,16 @@
 
         <div class="row">
             @forelse ($fix_regulations as $index => $regulation)
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="mb-4 col-lg-3 col-md-6">
                     <a href="{{ route('landing.front-peraturan.detail', $regulation->slug) }}">
 
-                        <div class="card text-white position-relative"
+                        <div class="text-white card position-relative"
                             style="background-image: url('{{ $backgroundImagesTwo[$index] }}'); background-size: cover; background-position: center; height: 200px;">
                             <!-- Overlay effect -->
                             <div class="overlay position-absolute w-100 h-100"
                                 style="background-color: rgba(0, 0, 0, 0.2); top: 0; left: 0;"></div>
                             <div class="card-body d-flex align-items-center justify-content-center position-relative">
-                                <h5 class="card-title text-center">{{ Str::limit($regulation->title, 30) }}</h5>
+                                <h5 class="text-center card-title">{{ Str::limit($regulation->title, 30) }}</h5>
                             </div>
                         </div>
                     </a>
@@ -125,38 +125,38 @@
         </div> --}}
     </section>
 
-    <section class="content container mt-5">
+    <section class="container mt-5 content">
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card rounded-lg mb-2 bg-gradient-dark">
+                <div class="mb-2 rounded-lg card bg-gradient-dark">
                     <img class="card-img-top" style="object-fit: cover; width: 100%; height: 200px"
                         src="{{ asset('images/landing/bg-landing-hukum-2.jpg') }}" alt="Dist Photo 1">
                     <div class="card-img-overlay d-flex flex-column justify-content-end">
-                        <h5 class="card-title text-primary text-white">Rancangan Peraturan Terbaru</h5>
-                        <p class="card-text text-white pb-2 pt-1">
-                            <a href="{{ route('landing.public-participation') }}" class="btn btn-primary my-2">Lihat Semua</a>
+                        <h5 class="text-white card-title text-primary">Rancangan Peraturan Terbaru</h5>
+                        <p class="pt-1 pb-2 text-white card-text">
+                            <a href="{{ route('landing.public-participation') }}" class="my-2 btn btn-primary">Lihat Semua</a>
                         </p>
                     </div>
                 </div>
             </div>
             {{-- <div class="container my-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="mb-4 d-flex justify-content-between align-items-center">
                 <h2 class="display-5">Rancangan Peraturan Terbaru</h2>
                 <a href="{{ route('landing.public-participation') }}" class="btn btn-outline-primary">Lihat Semua</a>
             </div>
 
             <div class="row">
                 @forelse ($newest_regulations as $index => $regulation)
-                    <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="mb-4 col-lg-3 col-md-6">
                         <a href="{{ route('landing.front-peraturan.detail', $regulation->slug) }}">
-                            <div class="card text-white position-relative"
+                            <div class="text-white card position-relative"
                                 style="background-image: url('{{ $backgroundImages[$index] }}'); background-size: cover; background-position: center; height: 200px;">
                                 <!-- Overlay effect -->
                                 <div class="overlay position-absolute w-100 h-100"
                                     style="background-color: rgba(0, 0, 0, 0.2); top: 0; left: 0;"></div>
                                 <div class="card-body d-flex align-items-center justify-content-center position-relative">
-                                    <h5 class="card-title text-center">{{ Str::limit($regulation->title, 30) }}</h5>
+                                    <h5 class="text-center card-title">{{ Str::limit($regulation->title, 30) }}</h5>
                                 </div>
                             </div>
                         </a>
@@ -204,7 +204,7 @@
         </div> --}}
     </section>
 
-    <section class="content container mt-5">
+    <section class="container mt-5 content">
         <div class="row">
             <div class="col-md-6">
                 <div class="card card-success">
@@ -255,7 +255,24 @@
         </div>
     </section>
 
-    {{-- <section class="content container">
+
+    {{-- Popup --}}
+    <div id="popUp" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                {{-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> --}}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            ...
+            </div>
+        </div>
+    </div>
+
+
+    {{-- <section class="container content">
         <div class="py-5">
             <h2 class="text-center display-5">Cari Peraturan</h2>
             <div class="row">
@@ -362,5 +379,8 @@
             data: regulationChartData,
             options: regulationChartOptions
         });
+
+
+        $('#popUp').modal('show')
     </script>
 @endpush
