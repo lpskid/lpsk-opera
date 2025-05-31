@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Regulation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RegulationController extends Controller
 {
@@ -42,15 +43,23 @@ class RegulationController extends Controller
             'attachments.*' => 'sometimes|mimes:pdf,doc,docx|max:20000',
         ]);
 
-        $regulation = Regulation::create([
-            'title' => $request->title,
-            'slug' => \Str::slug($request->title . '-' . \Str::random(6)),
-            'jdih_link' => $request->jdih_link,
-            'content' => $request->content,
-            'information' => $request->information ?? null,
-            'status' => $request->status,
-            'date' => date('Y-m-d'),
-        ]);
+        $regulation = new Regulation();
+        $regulation->title = $request->title;
+        $regulation->slug = \Str::slug($request->title . '-' . \Str::random(6));
+        $regulation->jdih_link = $request->jdih_link;
+        $regulation->content = $request->content;
+        $regulation->information = $request->information ?? null;
+
+        if ($request->status == 'pengusulan') {
+            $regulation->status = 'pending';
+        } else {
+            $regulation->status = 'penetapan';
+        }
+
+        $regulation->date = date('Y-m-d');
+        $regulation->save();
+
+
 
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $file) {
@@ -58,6 +67,7 @@ class RegulationController extends Controller
 
                 // Simpan informasi lampiran di database
                 $regulation->attachments()->create([
+                    'regulation_status' => $request->status,
                     'name' => $file->getClientOriginalName(),
                     'path' => $path,
                 ]);
@@ -65,7 +75,7 @@ class RegulationController extends Controller
         }
 
         if ($request->status == 'pengusulan') {
-            return redirect()->route('peraturan.index', ['type' => 'pengusulan'])->with('success', 'Peraturan berhasil dibuat.');
+            return redirect()->route('peraturan.index', ['type' => 'pending'])->with('success', 'Peraturan berhasil dibuat.');
         }
         return redirect()->route('peraturan.index', ['type' => 'penetapan'])->with('success', 'Peraturan berhasil dibuat.');
     }
@@ -126,12 +136,30 @@ class RegulationController extends Controller
         return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil diperbarui.');
     }
 
+    public function updateApprove(Request $request, string $id)
+    {
+        $regulation = Regulation::find($id);
+
+        $regulation->update([
+            'status' => 'pengusulan',
+        ]);
+
+
+        return redirect()->route('peraturan.index')->with('success', 'Peraturan berhasil diperbarui.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         $regulation = Regulation::find($id);
+        foreach ($regulation->attachments as $attachment) {
+            if (\Storage::disk('public')->exists($attachment->path)) {
+                \Storage::disk('public')->delete($attachment->path);
+            }
+            $attachment->delete();
+        }
 
         $regulation->delete();
 
@@ -141,6 +169,10 @@ class RegulationController extends Controller
     public function updateStatus(Request $request, string $id)
     {
         $regulation = Regulation::find($id);
+
+        $request->validate([
+            'attachments.*' => 'sometimes|mimes:pdf,doc,docx|max:20000',
+        ]);
 
         $statusOptions = [
             'pengusulan',
@@ -156,13 +188,70 @@ class RegulationController extends Controller
             'analisa_evaluasi'
         ];
 
+        $request_status = $request->status;
+
+           $cekRegulationStatus = Regulation::where('id', $id)
+            ->whereHas('attachments', function ($q) use ($request_status) {
+                $q->where('regulation_status', $request_status);
+            })
+            ->count();
+
+        if ($cekRegulationStatus == 0) {
+
+         if ($request->hasFile('attachments')) {
+                foreach ($request->file('attachments') as $file) {
+                    $path = $file->store('attachments', 'public'); // Simpan file di folder 'attachments' pada disk 'public'
+
+                    // Simpan informasi lampiran di database
+                    $regulation->attachments()->create([
+                        'regulation_status' => $request->status,
+                        'name' => $file->getClientOriginalName(),
+                        'path' => $path,
+                    ]);
+                }
+            }
+        } else {
+            return response()->json(['success' => false, 'message' => 'Lampiran sudah ada untuk status ini.'], 400);
+
+        }
+
+
         if (in_array($request->status, $statusOptions)) {
             $regulation->status = $request->status;
             $regulation->save();
+
+
+
+
             return response()->json(['success' => true]);
         }
 
         return response()->json(['success' => false], 400);
+    }
+
+    /**
+     * Check if a regulation has attachments.
+     * Returns JSON: { status: 1 } if attachments exist, { status: 0 } otherwise.
+     */
+    public function cekRegulationStatusAttachment($id, $status)
+    {
+
+        $cekRegulationStatus = Regulation::where('id', $id)
+            ->whereHas('attachments', function ($q) use ($status) {
+                $q->where('regulation_status', $status);
+            })
+            ->count();
+
+            if ($cekRegulationStatus > 0) {
+                $status = 1; // Ada lampiran
+            } else {
+                $status = 0; // Tidak ada lampiran
+            }
+
+
+
+
+        return response()->json(['status' => $status]);
     }
 }
 

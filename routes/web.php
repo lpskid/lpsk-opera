@@ -66,9 +66,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class);
 
     Route::get('peraturan/data/{type?}', [RegulationController::class, 'index'])->name('peraturan.index');
+    Route::put('peraturan/update-approve/{id}', [RegulationController::class, 'updateApprove'])->name('peraturan.update-approve');
     Route::resource('peraturan', RegulationController::class)->except(['index']);
 
     Route::put('peraturan/update-status/{id}', [RegulationController::class, 'updateStatus'])->name('peraturan.update-status');
+    Route::get('cekregulation/{id}/{status}', [RegulationController::class, 'cekRegulationStatusAttachment']);
 
     Route::get('/log', LogController::class)->name('log');
     Route::get('/log-activity', [LogActivityController::class, 'index'])->name('log-activity');

@@ -13,11 +13,11 @@
             <h5>Data</h5>
             {{-- button add with modal --}}
             <a href="{{ route('peraturan.create') }}"
-                class="btn d-sm-block d-md-block d-lg-block d-xl-block d-none btn-primary mb-2">
+                class="mb-2 btn d-sm-block d-md-block d-lg-block d-xl-block d-none btn-primary">
                 Tambah Peraturan
             </a>
         </div>
-        <a href="#" class="btn d-md-none d-lg-none d-xl-none d-block btn-primary mb-2">
+        <a href="#" class="mb-2 btn d-md-none d-lg-none d-xl-none d-block btn-primary">
             Tambah Peraturan
         </a>
     </div>
@@ -43,7 +43,19 @@
                             <th>{{ $regulation->date }}</th>
                             <th>{{ strtoupper(str_replace('_', ' ', $regulation->status)) }}</th>
                             <td>
-                                @if ($regulation->status != 'analisa_evaluasi')
+                                @if ($regulation->status == 'pending')
+                                    @can('approve-regulation')
+                                      <form action="{{ route('peraturan.update-approve', $regulation->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success" id="submitStatusUpdateApprove"><i class="fas fa-check"></i> Approve</button>
+                                    </form>
+
+                                    @endcan
+
+                                @else
+
+                                 @if ($regulation->status != 'analisa_evaluasi')
                                     <button type="button" class="btn btn-success btn-update-data"
                                         data-id="{{ $regulation->id }}" data-toggle="modal"
                                         data-target="#updateStatusModal">
@@ -60,10 +72,14 @@
                                     </form> --}}
                                 @endif
 
+                                @endif
+
+
+
                                 <a href="{{ route('peraturan.show', $regulation->id) }}"
-                                    class="btn btn-primary btn">Detail</a>
+                                    class="btn btn-primary">Detail</a>
                                 <a href="{{ route('peraturan.edit', $regulation->id) }}"
-                                    class="btn btn-primary btn">Edit</a>
+                                    class="btn btn-primary">Edit</a>
                                 <form action="{{ route('peraturan.destroy', $regulation->id) }}" method="post"
                                     class="delete-form d-inline">
                                     @csrf
@@ -89,12 +105,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="updateStatusForm" method="POST">
+                    <form id="updateStatusForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="status">Pilih Status</label>
                             <select class="form-control" id="status" name="status" required>
+                                <option value="" disabled selected>Pilih Status</option>
                                 <option value="pengusulan">Perencanaan</option>
                                 <option value="penyusunan_pembahasan">Penyusunan Pembahasan</option>
                                 <option value="partisipasi_publik">Partisipasi Publik</option>
@@ -107,6 +124,15 @@
                                 <option value="laporan_proses">Laporan Proses</option>
                                 <option value="analisa_evaluasi">Analisa Evaluasi</option>
                             </select>
+                        </div>
+                        <p id="attachmentStatus" class="mb-2 text-muted">Lampiran Sudah ada<span class="text-danger">*</span></p>
+                         <div class="form-group" id="attachment">
+                            <label for="attachment">Lampiran</label>
+                            <input type="file" id="attachments" name="attachments[]" class="form-control" multiple>
+                            {{-- <span class="text-sm text-muted">* Boleh lebih dari satu lampiran</span> --}}
+                            @error('attachments')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </form>
                 </div>
@@ -142,25 +168,58 @@
                 $('#updateStatusForm').attr('action', url); // Set form action
             });
 
-            // Submit form via AJAX
-            $('#submitStatusUpdate').on('click', function() {
-                $.ajax({
-                    url: $('#updateStatusForm').attr('action'),
-                    method: 'PUT',
-                    data: $('#updateStatusForm').serialize(),
-                    success: function(response) {
-                        $('#updateStatusModal').modal('hide');
-                        Swal.fire('Berhasil!', 'Status peraturan berhasil diperbarui',
-                            'success');
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000);
-                    },
-                    error: function(error) {
-                        Swal.fire('Error!', 'Gagal memperbarui status', 'error');
+            $('#submitStatusUpdate').on('click', function () {
+                let form = $('#updateStatusForm')[0];
+                let formData = new FormData(form);
+
+                //update fileupload melalui ajax
+            $.ajax({
+                url: $('#updateStatusForm').attr('action'),
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-HTTP-Method-Override': 'PUT'
+                },
+                success: function (response) {
+                    $('#updateStatusModal').modal('hide');
+                    Swal.fire('Berhasil!', 'Status peraturan berhasil diperbarui', 'success');
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+                },
+                error: function (xhr) {
+                    let message = 'Gagal memperbarui status';
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        message = xhr.responseJSON.message;
                     }
-                });
+                    Swal.fire('Error!', message, 'error');
+                    console.error(xhr.responseText);
+                }
             });
+        });
+
+
+            // Submit form via AJAX
+            // $('#submitStatusUpdate').on('click', function() {
+            //     $.ajax({
+            //         url: $('#updateStatusForm').attr('action'),
+            //         method: 'PUT',
+            //         data: $('#updateStatusForm').serialize(),
+            //         success: function(response) {
+            //             $('#updateStatusModal').modal('hide');
+            //             Swal.fire('Berhasil!', 'Status peraturan berhasil diperbarui',
+            //                 'success');
+            //             setTimeout(function() {
+            //                 location.reload();
+            //             }, 1000);
+            //         },
+            //         error: function(error) {
+            //             Swal.fire('Error!', 'Gagal memperbarui status', 'error');
+            //         }
+            //     });
+            // });
 
             $('.btn-delete-data').on('click', function(e) {
                 e.preventDefault();
@@ -179,6 +238,49 @@
                 })
             })
 
+            $('#submitStatusUpdateApprove').on('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Apakah anda yakin approve data ini?',
+                    text: "Data yang diapprove tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Approve!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).closest('form').submit();
+                    }
+                })
+            })
+
+
+            // Show/hide attachment field based on status and regulation_attachments
+            $('#status').on('change', function() {
+                let selectedStatus = $(this).val();
+                let formAction = $('#updateStatusForm').attr('action');
+                let regulationId = formAction.split('/').pop(); // get id from URL
+
+                console.log('Selected Status:', selectedStatus);
+                console.log('Regulation ID:', regulationId);
+                // Call your endpoint to check regulation attachments
+                $.getJSON(`/cekregulation/${regulationId}/${selectedStatus}`, function(response) {
+                    // response.should be { exists: 1 } or { exists: 0 }
+                    console.log('Response:', response.status);
+                    if (response.status === 0) {
+                        $('#attachment').show();
+                        $('#attachmentStatus').hide();
+                    } else {
+                        $('#attachment').hide();
+                        $('#attachmentStatus').show();
+                    }
+                });
+            });
+
+            // Initial state: hide attachment field
+            $('#attachment').hide();
+
             // $('.btn-update-data').on('click', function(e) {
             //     e.preventDefault();
             //     Swal.fire({
@@ -195,6 +297,7 @@
             //         }
             //     })
             // })
+
         });
     </script>
 @endpush

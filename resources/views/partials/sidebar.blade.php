@@ -13,7 +13,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="pb-3 mt-3 mb-3 user-panel d-flex">
             {{-- Dropdown --}}
             <div class="image">
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
@@ -78,7 +78,7 @@
 
                     <li class="nav-item">
                         <a href="{{ route('peraturan.index') }}"
-                            class="nav-link {{ request()->routeIs('peraturan.index') && !in_array(request('type'), ['penetapan', 'pengusulan']) ? 'active' : '' }}">
+                            class="nav-link {{ request()->routeIs('peraturan.index') && !in_array(request('type'), ['pending','penetapan', 'pengusulan']) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file-pdf"></i>
                             <p>Seluruh Peraturan</p>
                         </a>
@@ -96,6 +96,13 @@
                             class="nav-link {{ request('type') === 'pengusulan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file-pdf"></i>
                             <p>Perencanaan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('peraturan.index', ['type' => 'pending']) }}"
+                            class="nav-link {{ request('type') === 'pending' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-file-pdf"></i>
+                            <p>Pending</p>
                         </a>
                     </li>
                 @endcan
@@ -130,7 +137,7 @@
                         </ul>
                     </li>
                 @endcan
-                <li class="nav-item mt-3">
+                <li class="mt-3 nav-item">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" id="form-logout-button" class="nav-link">

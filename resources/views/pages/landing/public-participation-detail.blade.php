@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section class="content container">
+    <section class="container content">
         <div class="row">
             <div class="col-12">
                 {{-- Button Back --}}
@@ -17,41 +17,41 @@
             </div>
         </div>
 
-        <div class="row mb-4">
+        <div class="mb-4 row">
             <div class="col-12 col-md-8">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="card-title mb-0">Detail Peraturan</h3>
+                <div class="shadow-sm card">
+                    <div class="text-white card-header bg-primary">
+                        <h3 class="mb-0 card-title">Detail Peraturan</h3>
                     </div>
 
                     <div class="card-body">
-                        <h4 class="fw-bold mb-4">
+                        <h4 class="mb-4 fw-bold">
                             {{ $regulation->title }}
                         </h4>
 
                         <div class="mb-3">
-                            <p class="fw-bold mb-1">Nomor</p>
+                            <p class="mb-1 fw-bold">Nomor</p>
                             <p class="text-muted">{{ $regulation->number }}</p>
                         </div>
 
                         <div class="mb-3">
-                            <p class="fw-bold mb-1">Tanggal</p>
+                            <p class="mb-1 fw-bold">Tanggal</p>
                             <p class="text-muted">{{ $regulation->date }}</p>
                         </div>
 
                         <div class="mb-3">
-                            <p class="fw-bold mb-1">Progres</p>
+                            <p class="mb-1 fw-bold">Progres</p>
                             <p class="badge bg-info text-dark">{{ strtoupper(str_replace('_', ' ', $regulation->status)) }}
                             </p>
                         </div>
 
                         <div class="mb-3">
-                            <p class="fw-bold mb-1">Keterangan</p>
+                            <p class="mb-1 fw-bold">Keterangan</p>
                             <p>{!! $regulation->information !!}</p>
                         </div>
 
                         <div class="mb-3">
-                            <p class="fw-bold mb-1">Isi</p>
+                            <p class="mb-1 fw-bold">Isi</p>
                             <p>{!! $regulation->content !!}</p>
                         </div>
                     </div>
@@ -73,23 +73,30 @@
             <div class="col-12 col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">Lampiran</h3>
+                        <h3 class="mb-0 card-title">Lampiran</h3>
                     </div>
 
-                    <div class="card-body">
-                        {{-- Jika ada lampiran --}}
-                        @if (count($regulation->attachments) > 0)
-                            @foreach ($regulation->attachments as $attachment)
-                                <a href="{{ Storage::url($attachment->path) }}" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn-app">
-                                    <i class="fas fa-paperclip"></i>Unduh
-                                </a>
-                                {{-- <a class="btn btn-app">
-                                    <i class="fas fa-save"></i> Save
-                                </a> --}}
-                            @endforeach
+                    <div class="card-body" style="overflow-y: auto; min-height: 100%;">
+                        @if ($regulation->attachments->count() > 0)
+                            <ul class="list-group list-group-flush">
+                                @foreach ($regulation->attachments as $attachment)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            @if ($attachment->regulation_status)
+                                                <strong>{{ str_replace('_', ' ', $attachment->regulation_status) }}</strong>
+                                            @endif
+                                            <p>{{ $attachment->name }}</p>
+                                            <small class="text-muted">{{ $attachment->created_at->diffForHumans() }}</small>
+                                        </div>
+                                        <a href="{{ Storage::url($attachment->path) }}" target="_blank" rel="noopener noreferrer" class="gap-2 btn btn-primary btn-sm d-flex align-items-center">
+                                            <i class="fas fa-download"></i>
+                                            <span> Unduh</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         @else
-                            <p class="text-muted">Tidak ada lampiran</p>
+                            <p class="mb-0 text-muted">Tidak ada lampiran</p>
                         @endif
                     </div>
                 </div>
@@ -97,7 +104,7 @@
             {{-- <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">Rekam Jejak</h3>
+                        <h3 class="mb-0 card-title">Rekam Jejak</h3>
                     </div>
                     <div class="card-body">
                         @if (count($regulation->publicParticipations) > 0)
@@ -133,7 +140,7 @@
             <div class="col-12 col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title mb-0">Partisipasi</h3>
+                        <h3 class="mb-0 card-title">Partisipasi</h3>
                     </div>
 
                     <div class="card-body">
@@ -191,7 +198,7 @@
                             <div class="form-group">
                                 <label for="attachment">Lampiran</label>
                                 <input type="file" name="attachments[]" class="form-control" id="attachment">
-                                <span class="text-muted text-sm">* Jika ada file yang ingin diupload</span>
+                                <span class="text-sm text-muted">* Jika ada file yang ingin diupload</span>
                                 @error('attachments')
                                     <br>
                                     <span class="text-danger">{{ $message }}</span>

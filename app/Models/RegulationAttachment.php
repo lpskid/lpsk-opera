@@ -10,6 +10,7 @@ class RegulationAttachment extends Model
     use HasFactory;
 
     protected $fillable = [
+        "regulation_status",
         "name",
         "path",
     ];
